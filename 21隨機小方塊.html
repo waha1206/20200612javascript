@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<style>
+			.map {
+				width: 800px;
+				height: 600px;
+				background-color: #ccc;
+				position: relative;
+			}
+		</style>
+		<script>
+			window.onload = function () {
+				//產生隨機對象
+				(function (window) {
+					function Random() {}
+					Random.prototype.getRandom = function (min, max) {
+						return Math.floor(Math.random() * (max - min) + min);
+					};
+					//把局部對象曝露給window頂級對象，就成了全局對象
+					window.Random = new Random();
+				})(window); // 自調用函數的方式一定要加上分號
+				//產生小方塊
+				(function (window) {
+					//console.log(Random.getRandom(10, 20));
+					//選擇器的方式來獲取元件對象
+					var map = document.querySelector(".map");
+					//食物的構造函數
+					function Food(width, height, color) {
+						this.width = width || 20;
+						this.height = height || 20;
+						//橫坐標，縱座標
+						this.x = 0;
+						this.y = 0;
+						this.color = color;
+						this.element = document.createElement("div");
+					}
+					//初始化小方塊顯示的效果以及位置--顯示在地圖上
+					Food.prototype.init = function (map) {
+						//設置小方塊的樣式
+						var div = this.element;
+						div.style.position = "absolute";
+						div.style.backgroundColor = this.color;
+						div.style.width = this.width + "px";
+						div.style.height = this.height + "px";
+						//把小方塊設置到地圖上
+						map.appendChild(div);
+						this.render(map);
+					};
+					//產生隨機位置
+					Food.prototype.render = function (map) {
+						//隨機產生橫縱座標
+						var x = Random.getRandom(0, map.offsetWidth / this.width) * this.width;
+						var y = Random.getRandom(0, map.offsetHeight / this.height) * this.height;
+						this.x = x;
+						this.y = y;
+						var div = this.element;
+						div.style.left = this.x + "px";
+						div.style.top = this.y + "px";
+					};
+					var fd = new Food(20, 20, "red");
+					console.dir(fd);
+					fd.init(map);
+				})(window);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="map">
+
+		</div>
+
+	</body>
+
+</html>
