@@ -98,6 +98,8 @@
 					}
 					//為原型添加方法---小蛇初始化的方法
 					Snake.prototype.init = function (map) {
+						//先刪除之前的小蛇
+						remove();
 						//循環遍歷創建div
 						for (var i = 0; i < this.body.length; i++) {
 							//數組中的每個數組都是一個對象
@@ -112,26 +114,99 @@
 							//橫縱座標
 							div.style.left = obj.x * this.width + "px";
 							div.style.top = obj.y * this.height + "px";
-							console.log(obj.x, div.style.left,obj.y, div.style.top);
-
-
 							//背景顏色
 							div.style.backgroundColor = obj.color;
 							//方向暫時不定
 
 							//把div加入到elements的數組中----目的是為了刪除
 							elements.push(div);
-
 						}
 					};
+					//為原型添加方法---小蛇動起來
+					Snake.prototype.move = function (food, map) {
+						var i = this.body.length - 1; //只取身體的部分
+						for (; i > 0; i--) {
+							this.body[i].x = this.body[i - 1].x;
+							this.body[i].y = this.body[i - 1].y;
+						}
+						//判斷方向---改變小蛇頭的座標位置
+						switch (this.direction) {
+							case "right":
+								this.body[0].x += 1;
+								break;
+							case "left":
+								this.body[0].x -= 1;
+								break;
+							case "top":
+								this.body[0].y -= 1;
+								break;
+							case "bottom":
+								this.body[0].y += 1;
+								break;
+						}
+					}
+					//刪除小蛇的私有函數
+					function remove() {
+						var i = elements.length - 1;
+						for (; i > 0; i--) {
+							ele = elements[i];
+							ele.parentNode.removeChild(ele);
+							elements.splice(i, 1);
+						}
+						//無法理解，為什麼蛇的身體會多一塊出來
+						if (elements.length) {
+							ele = elements[0];
+							ele.parentNode.removeChild(ele);
+							elements.splice(0, 1);
+							//console.log("刪除多餘的蛇區塊");
+						}
+						//console.log("執行過remove()，目前elements長度為"+elements.length);
+					}
 					//把小蛇暴露給window，外部可以訪問
 					window.Snake = Snake;
 				}());
+				//自調用函數---遊戲對象
+				(function () {
+					var that = null;
+					//遊戲的構造函數
+					function Game(map) {
+						this.food = new Food();
+						this.snake = new Snake();
+						this.map = map;
+						that = this;
+					}
+					Game.prototype.init = function () {
+						//初始化遊戲
+						//初始化食物
+						this.food.init(this.map);
+						//初始化小蛇
+						this.snake.init(this.map);
+						//調用自動移動小蛇的方法
+						this.runSnake(this.food, this.map);
+					};
+					//添加原型方法---設定小蛇可以自動的跑起來
+					Game.prototype.runSnake = function (food, map) {
+						setInterval(function () {
+							//移動小蛇
+							this.snake.move(food, map);
+							//初始化小蛇
+							this.snake.init(map);
+						}.bind(that), 150);
+					};
+					window.Game = Game;
+				}());
 
-				var fd = new Food();
-				fd.init(document.querySelector(".map"));
-				var snake = new Snake();
-				snake.init(document.querySelector(".map"));
+				var gm = new Game(document.querySelector(".map"));
+				gm.init();
+
+				//var fd = new Food();
+				//fd.init(document.querySelector(".map"));
+				//var snake = new Snake();
+				//snake.init(document.querySelector(".map")); //先在地圖上看到小蛇
+				//setInterval(function () {
+				//	snake.move(fd, document.querySelector(".map"));
+				//	snake.init(document.querySelector(".map")); //先在地圖上看到小蛇
+				//}, 1000);
 
 				//console.log(fd.height);
 			}
