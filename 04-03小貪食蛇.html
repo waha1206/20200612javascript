@@ -18,7 +18,7 @@
             //自調用函數---食物的
             (function() {
                 var elements = [];
-
+                //食物的建構函式
                 function Food(x, y, width, height, color) {
                     this.x = 0;
                     this.y = 0;
@@ -143,6 +143,23 @@
                             this.body[0].y += 1;
                             break;
                     }
+                    //當蛇吃到食物
+                    //蛇頭的座標
+                    var headX=this.body[0].x*this.width;
+                    var headY=this.body[0].y*this.height;
+                    console.log("食物"+food.x+"===="+food.y);
+                    console.log("蛇頭"+headX+"===="+headY);
+                    //判斷小蛇有沒有吃到食物
+                    if(headX==food.x&&headY==food.y){
+                        var last=this.body[this.body.length-1];
+                        this.body.push({
+                            x:last.x,
+                            y:last.y,
+                            color:last.color
+                        });
+                        food.init(map);
+                    }
+
                 };
                 //刪除小蛇的私有函數
                 function remove() {
@@ -186,7 +203,7 @@
                     //調用按鍵的控制
                     this.bindkey();
                 };
-                //添加原型方法---設定小蛇可以自動的跑起來
+                //添加原型方法---設定小蛇可以自動的跑起來 (要跑起來裡面一定會有定時器)
                 Game.prototype.runSnake = function(food, map) {
                     var setTimer = setInterval(
                         function() {
