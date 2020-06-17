@@ -2,7 +2,6 @@
     "editor.fontSize": 14,
     "editor.lineHeight": 18,
     "terminal.integrated.fontSize": 12, // terminal 字體大小
-    "editor.formatOnSave": true, // 當儲存時，是否自動格式化
     "files.autoSave": "onFocusChange", // 是否自動儲存檔案
     "editor.fontFamily": "Fira Code",
     // 注意，win 用戶都要使用 "\\"
@@ -34,5 +33,9 @@
     "editor.mouseWheelZoom": true,
     "html.format.indentInnerHtml": true, // 是否自動加上括號
     "editor.formatOnSave": false,
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
