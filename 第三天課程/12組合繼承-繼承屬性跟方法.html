@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //原型繼承實現 Student.prototype = new Person();
+        //借用構造函數實現繼承 Person.call(this, 參數1, 參數2, 參數3 ....)
+        //組合繼承：原型繼承+借用構造函數實現繼承
+        function Person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        Person.prototype.sayHi = function() {
+            console.log("您好啊！");
+        };
+
+        function Student(name, age, sex, score) {
+            //使用構造函數繼承屬性，使用call 第一個參數要帶入 this (這個this是Student)
+            Person.call(this, name, age, sex);
+            this.score = score;
+        }
+        //原型繼承，改變屬性指向 Person 因為已經使用了call 繼承了 Person的屬性，所以不用導入參數
+        Student.prototype = new Person();
+        Student.prototype.eat = function() {
+            console.log("學生吃零食！");
+        };
+
+        var stu = new Student("小A", "20歲", "女", "120分");
+        console.log(stu.name, stu.age, stu.sex, stu.score);
+        stu.sayHi();
+        stu.eat();
+        var stu2 = new Student("小B", "30歲", "妖", "199分");
+        console.log(stu2.name, stu2.age, stu2.sex, stu2.score);
+        stu2.sayHi();
+        stu2.eat();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

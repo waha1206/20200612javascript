@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //構造函式
+        function Person(name, age, sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        Person.prototype.sayHi = function() {
+            console.log("哈嚕");
+        };
+
+        function Student(name, age, sex, score) {
+            Person.call(this, name, age, sex);
+            this.score = score;
+        }
+
+        var stu = new Student("Leo", "18歲", "男", 100);
+        console.log(stu.name, stu.age, stu.sex, stu.score);
+        console.log(stu.sayHi());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
