@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      //原型改變後，才可以添加方法
+      function Person(age) {
+        this.age = age;
+      }
+      //添加原型方法，這時候的__proto__指向的是 Person的結構函式指象的原型
+      Person.prototype.sayHi = function () {
+        console.log("哈嚕");
+      };
+      //改變了prototype的原型鍊(__proto__)指向，所以上面加的原型鍊會斷掉，然後執行sayHi這個函式會報錯
+      Person.prototype = {
+        eat: function () {
+          console.log("吃東西");
+        },
+      };
+
+      var per = new Person(10);
+	  per.eat();
+	  console.dir(per.eat);
+      per.sayHi();  這行會爆錯
+
+	  //正確的寫法如下 --- 先建立 構造函數
+	  function Student(name){
+		  this.name=name;
+	  }
+	  //先改變原型的指向，因為對象是obj所以會先有實例對象，實例對象會先指向原型，所以不會爆錯
+	  //而且呢，只能改變一次，再改第二次，第一次改的會爆錯
+	  Student.prototype={
+		  eat:function(){
+			  console.log("學生吃東西");
+		  }
+	  }
+
+	  //再來把原型建立起來就不會錯了
+	  Student.prototype.sayHi=function(){
+		  console.log("學生say Hi");
+	  }
+	  //再來把原型2建立起來就不會錯了
+	  Student.prototype.sayHi2=function(){
+		  console.log("學生say Hi 2");
+	  }
+
+
+	  var stu=new Student("Leo");
+	  stu.sayHi();
+	  stu.eat();
+	  stu.sayHi2();
+
+
+
+    </script>
+  </head>
+  <body>
+	  <div id="dv"></div>
+	  <script>
+		  var divobj=document.getElementById("dv");
+		  console.dir(divobj);
+	  </script>
+  </body>
+</html>
