@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /*
+                	//原始的例子
+                                                                                                f1();
+                                                                                                console.log(c);
+                                                                                                console.log(b);
+                                                                                                console.log(a);
+
+                                                                                                function f1() {
+                                                                                                    var a = b = c = 9;
+                                                                                                    console.log(a);
+                                                                                                    console.log(b);
+                                                                                                    console.log(c);
+                                                                                                }
+                                                                                        		*/
+        //上面的程式，解析後會變成下面這樣
+        f1();
+
+        function f1() {
+            //變數先聲明
+            var a;
+            //變數賦值
+            //a是局部變量，所以會報錯
+            a = 9;
+            //B跟C是隱式變量，隱式變量也是全局變量，所以不會報錯
+            b = 9;
+            c = 9;
+            console.log(a); // 9
+            console.log(b); // 9
+            console.log(c); // 9
+
+        }
+
+        console.log(c); //隱式變量 = 全局函數 =9
+        console.log(b); //隱式變量 = 全局函數 =9
+        console.log(a); //局部變量所以報錯 not define
+    </script>
+</body>
+
+</html>
