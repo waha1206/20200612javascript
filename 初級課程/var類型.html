@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var num = 10;
+        var str = "ABC";
+        var obj = new Object();
+        var flag = false;
+        var undef;
+        var nll = null;
+        var num2 = 010;
+
+        console.log(typeof num);
+        console.log(typeof str);
+        console.log(typeof obj);
+        console.log(typeof flag);
+        console.log(typeof undef);
+        console.log(typeof nll);
+        console.log(nll);
+        console.log("10");
+        console.log(10);
+        console.log(num2);
+        console.log(Number.MAX_VALUE);
+        console.log(Number.MIN_VALUE);
+        var a = 0.1;
+        var b = 0.2;
+        //小數相加會有錯誤 BUG的一種
+        var sum = a + b;
+        console.log(sum);
+        var nan;
+        console.log(nan + 10);
+        console.log(isNaN(nan + 10)); // true
+        console.log(isNaN("我")); // true
+        console.log(isNaN("10")); // false
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //普通函式 --- 第一個字是小寫
+        function f1() {
+            console.log("我是普通函式");
+        }
+        f1();
+        //我是構造函式 --- 第一個字是大寫
+        function F1() {
+            console.log("我是構造函式");
+        }
+        var f = F1();
+        // 對象的方法 --- 第一個字是大寫
+        function F2() {
+            this.hello = function() {
+                console.log("我是對象方法");
+            };
+        }
+        var f2 = new F2();
+        f2.hello();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

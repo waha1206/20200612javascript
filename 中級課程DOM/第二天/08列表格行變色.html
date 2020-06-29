@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+</head>
+
+<body>
+    <input type="button" value="點我變色" id="btn" />
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+
+    <script>
+        var liObjs = document.getElementsByTagName("li");
+        my$("btn").onclick = function() {
+            for (var i = 0; i < liObjs.length; i++) {
+                /*
+                if (i % 2) {
+                    liObjs[i].style.backgroundColor = "yellow";
+                } else {
+                    liObjs[i].style.backgroundColor = "hotpink";
+				}*/
+                //上面的代碼用三元運算是代替
+                liObjs[i].style.backgroundColor = i % 2 ? "yellow" : "hotpink";
+            }
+        };
+    </script>
+</body>
+
+</html>

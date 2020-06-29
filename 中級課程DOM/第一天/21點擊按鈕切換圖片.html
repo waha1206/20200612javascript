@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/common-dom.js"></script>
+</head>
+
+<body>
+    <input type="button" value="點擊放大圖片" id="btn" />
+    <img src="image/a-640.jpg" alt="" id="im">
+
+    <script>
+        var btnObj = my$("btn");
+        var imObj = my$("im");
+
+        btnObj.onclick = function() {
+            imObj.src = "image/a-1080.jpg";
+        };
+    </script>
+
+</body>
+
+</html>

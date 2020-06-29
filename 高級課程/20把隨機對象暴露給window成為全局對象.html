@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<script>
+			(function (window) {
+				//產生隨機的構造函數
+				function Random() {}
+				//在原型中添加方法
+				Random.prototype.getRandom = function (min, max) {
+					return Math.floor(Math.random() * (max - min) + min);
+				};
+				window.Random = Random;
+
+			})(window);
+			var ran = new Random();
+			console.log(ran.getRandom(10, 50));
+
+
+			(function (window) {
+				function Random2() {
+
+				}
+					return Math.floor(Math.random() * (max - min) + min);
+				}
+				window.Random2 = Random2;
+			})(window);
+			var ran2 = new Random2();
+			console.log(ran2.getRandom(100, 200));
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+</head>
+
+<body>
+    <input type="button" value="點菜" id="btn" />
+    <select name="" id="ss">
+            <option value="1">AAAAA</option>
+            <option value="2">BBBBB</option>
+            <option value="3">CCCCC</option>
+            <option value="4" id="op1">DDDDD</option>
+            <option value="5">EEEEE</option>
+
+        </select>
+    </br>
+    </br>
+    </br>
+    </br>
+    <textarea name="" id="tt" cols="42" rows="15">
+    推薦用value的方式修改此內容
+    這個是第一行，第一次使用這個元件
+    說真的這老師不錯，有時候會覺得太多話就是了
+    希望早點完成所有課程，然後對業務有很大幫助
+    JS的排版還是有點怪怪的，傷腦經
+</textarea>
+    <input type="button" value="註冊" id="btn2">
+    <script>
+        var btnObj = my$("btn");
+        var op1Obj = my$("op1");
+        var ttObj = my$("tt");
+        var btn2Obj = my$("btn2");
+        btnObj.onclick = function() {
+            op1Obj.selected = true;
+        };
+        btn2Obj.onclick = function() {
+            ttObj.value = "element不會改到，推薦用這個";
+            ttObj.innerHTML = '上下都會改，emement裡面可以看到';
+        };
+        ttObj.readonly = true;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dv {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+    </style>
+    <script>
+        var getRandom = function() {
+            var color = "#";
+            var array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "e", "d", "f"];
+            var num;
+            for (var i = 0; i < 6; i++) {
+
+                num = array[Math.floor(Math.random() * 16)];
+                color += num;
+                console.log(color);
+
+            }
+            return color;
+        };
+        window.onload = function() {
+            document.getElementById("dv").style.backgroundColor = getRandom();
+
+        };
+    </script>
+</head>
+
+<body>
+    <div id="dv"></div>
+</body>
+
+</html>

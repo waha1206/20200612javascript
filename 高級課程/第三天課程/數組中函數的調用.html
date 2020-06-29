@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function f1() {
+
+        }
+        console.log(typeof f1)
+        var arr = [
+            function() {
+                console.log("1");
+            },
+            function() {
+                console.log("2");
+            },
+            function() {
+                console.log("3");
+            },
+            function() {
+                console.log("4");
+            }
+        ];
+        //回掉函數:函數作為參數使用
+        /*
+        這個函式的意思是
+        */
+        arr.forEach(function(ele) {
+            ele();
+        });
+
+        var x;
+        console.dir(x);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

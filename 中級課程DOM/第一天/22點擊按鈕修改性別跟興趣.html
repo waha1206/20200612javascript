@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/common-dom.js">
+    </script>
+</head>
+
+<body>
+    <input type="button" value="點我改變性別" id="btn1">
+    <input type="radio" name="sex">男
+    <input type="radio" name="sex" id="ra1">女
+    <input type="radio" name="sex">中
+
+    </br>
+    <input type="button" value="點我選擇興趣" id="btn2">
+    <input type="checkbox" name="interest">吃飯
+    <input type="checkbox" name="interest">睡覺
+    <input type="checkbox" name="interest" id="ck1">打球
+    <input type="checkbox" name="interest">打毛
+    <input type="checkbox" name="interest" id="ck2">打東
+    <input type="checkbox" name="interest">打溪
+
+    <script>
+        var btn1Obj = my$("btn1");
+        var btn2Obj = my$("btn2");
+        var raObj = my$("ra1");
+        var ck1Obj = my$("ck1");
+        var ck2Obj = my$("ck2");
+        btn1Obj.onclick = function() {
+            raObj.checked = true;
+        };
+        btn2Obj.onclick = function() {
+            ck1Obj.checked = true;
+            ck2Obj.checked = true;
+        }
+    </script>
+</body>
+
+</html>

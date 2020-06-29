@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        ul {
+            list-style-type: none;
+            cursor: pointer;
+        }
+        
+        div {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+            <li>1111111111111</li>
+        </ul>
+
+    </div>
+    <script>
+        var liObjs = document.getElementsByTagName("li");
+        for (var i = 0; i < liObjs.length; i++) {
+            liObjs[i].onmouseover = function() {
+                this.style.backgroundColor = "red";
+            };
+            liObjs[i].onmouseout = function() {
+                this.style.backgroundColor = "";
+            };
+        }
+    </script>
+</body>
+
+</html>

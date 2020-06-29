@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="點我改變屬性" id="btn" />
+    <script>
+        var btnObj = document.getElementById("btn");
+        btnObj.onclick = function() {
+            this.value = "我變成text了";
+            this.type = "text";
+            this.id = "btn2";
+        }
+    </script>
+
+</body>
+
+</html>

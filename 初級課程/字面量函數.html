@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        obj1 = {};
+        obj1.name = "小明";
+        obj1.age = 18;
+        obj1.eat = function() {
+            console.log("吃吃");
+        }
+        console.log(obj1.name);
+        console.log(obj1.age);
+        obj1.eat();
+        for (var key in obj1) {
+            console.log(key + "======>" + obj1[key]);
+        }
+        //優化後的字面量函數--使用JSON格式
+        obj2 = {
+            name: "小鳴",
+            age: 18,
+            eat: function() {
+                console.log("哈哈");
+            },
+        }
+        for (var key in obj2) {
+            console.log(key + "======>" + obj2[key]);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="點擊修改P標籤" id="btn" />
+    <p id="p1">我是P標籤</p>
+    <script>
+        document.getElementById("btn").onclick = function() {
+            //只要看到成對的元素 (element) ，兩個標籤中間的文字幾乎都可以使用innerHTML這個屬性去修改內容
+            document.getElementById("p1").innerHTML = "點擊按鈕後改變了";
+
+        };
+    </script>
+</body>
+
+</html>

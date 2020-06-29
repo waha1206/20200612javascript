@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //很重要，要記起來
+        //.concar (數組,數組,數組,數組,數組...) 組合一個新的數組
+        //.every(函數); --- 返回值是布林值，函數作為參數使用，函數中有三個參數，第一個參數是元素的值，第二個是參數的索引值，第三個是原來的數組(通常沒用)
+        //.filter(函數); --- 返回的是數組中每一個元素，都符合條件的元素，組成了一個新的數組
+        //.push (值); --- 把值追加到數組中，加到最後了 --- 返回值也是追加數據之後的數組長度
+        //.pop (); --- 刪除數組中最後一個元素，返回值就是刪除的這個元素的值
+        //.shift(); --- 刪除數組中的第一個元素，返回值就是刪除的這個值
+        //.unshift(); --- 向數組的第一個元素前面插入一個新的元素 --- 返回值也是追加數據之後的數組長度
+        //.forEach(函數); --- 遍歷數組，版本5才支援，低版本要另外注意加入common代碼 (Polyfill)
+        //.indexOf(元素值); --- 返回的是索引，沒有的話返回-1
+        //.join(字符串) --- 返回字符串
+        //.map(函數) --- 數組中每個元素都要執行這個函數，把執行後的結果重新的全部的放在一個新的數組中
+        //.reserve(); --- 反轉數組
+        //.sort(); --- 排序的，可能不穩定，如果不穩定，請寫MDN中的那個固定的代碼
+        //.slice(開始擷取的索引位置 arr[3]-第四個，第一個是0, 結束擷取的索引位置 arr[6])-第七個
+        //擷取的時候，把擷取的數組放在一個新的數組中，不包含最後一個元素
+        //  1  2  3  4  5  6  7
+        // [0][1][2][3][4][5][6][7]
+        //.splice(插入的索引位置, 0=不做任何改變, "要插入的元素") --- 這個會插入該元素
+        //.splice(要開始刪除的索引位置, 1=刪除索引所在位置的一個元素 (1=刪除一個 2兩個，以此類推))
+
+        var array = [10, 20, 30, 40, 50, 60, 70, 80];
+        //filter裡面有三個元素，通常只用到第一個元素
+        //第一個參數為function 也就是所謂的 callback
+        var result = array.filter(function(ele) {
+            console.log(arguments.length);
+            return ele > 40;
+        });
+        console.log(result);
+        result.push(99); //增加一個數組
+        console.log(result);
+        //刪除最後一個元素
+        var popValue = result.pop(); //返回值 = 刪除的那個元素的數值
+        console.log("刪除的值是====>" + popValue)
+        console.log(result);
+        //刪除第一個元素
+        var popValue = result.shift(); //返回值 = 刪除的那個元素的數值
+        console.log("刪除的值是====>" + popValue)
+        console.log(result);
+        //unshift 往第一個數組的前面插入新元素
+        var ins = result.unshift(999);
+        console.log("在數組的最前面插入一個元素返回數組長度====>" + ins)
+        console.log(result);
+        //遍歷數組
+        result.forEach(function(ele, index) {
+            console.log(ele + "==========>" + index);
+        });
+        //數組中找值，有找到返回他的index值，沒有返回-1
+        index = result.indexOf(999);
+        console.log("index值返回===>" + index);
+
+        //數組的元素中插入字串
+        var myJoin = ["1", "2", "3", "4", "5", "6", "7", ];
+        var str = myJoin.join("|");
+        console.log(str);
+
+        //map
+        var numbers = [1, 4, 9];
+        var roots = numbers.map(Math.sqrt); //map會return一個新的array
+        console.log(roots);
+        //也可以自定義函數後回傳值
+        var roots2 = numbers.map(function(ele) {
+            return ele * 2;
+        });
+        console.log(roots2);
+
+        //reverse 反轉，好東西
+        var arr = ["1", "2", "3", "4", "5", "6", "7", ];
+        arr.reverse();
+        console.log(arr);
+
+        //sort
+        var arr = [1, 40, 20, 10, 100];
+        arr.sort(function(a, b) {
+            //a相當於之前寫的排序法 num[j]，第一個元素
+            //b相當於之前寫的排序法 num[j+1]，下一個要比較的元素
+            if (a > b) {
+                return 1; // 傳回 1 換
+            } else if (a == b) {
+                return 0; // 傳回 0 不換
+            } else {
+                return -1; // 傳回 -1 不換
+            }
+        });
+        console.log(arr);
+
+        //slice
+        var arr = ["1", "2", "3", "4", "5", "6", "7", ];
+        //slice(開始擷取的位置 arr[3], 結束擷取的位置 arr[6])
+        var newArr = arr.slice(3, 6);
+        console.log(newArr);
+
+        //splice
+        var arr = ["1", "2", "3", "4", "5", "6", "7", ];
+        // splice(插入的索引位置, 0=不做任何改變)
+        arr.splice(2, 0, "插入的元素");
+        console.log(arr);
+        // splice(刪除的索引位置, 1=刪除索引所在位置的元素)
+        arr.splice(2, 1);
+        console.log(arr);
+    </script>
+</body>
+
+</html>

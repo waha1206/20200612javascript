@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="顯示效果" id="btn" />
+    <img src="image/a.jpg" alt="沒圖片的時候顯示的文字" title="滑鼠移動到圖片上顯示的文字" width="640">
+    <script>
+        document.getElementById("btn").onclick = function() {
+            var imgObjs = document.getElementsByTagName("img");
+            imgObjs[0].alt = "我被修改了A";
+            imgObjs[0].title = "我被修改了B";
+            imgObjs[0].width = "640";
+        };
+    </script>
+</body>
+
+</html>

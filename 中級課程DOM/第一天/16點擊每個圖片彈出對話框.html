@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="image/a.jpg" alt="" width="200" height="300">
+    <img src="image/b.jpg" alt="" width="200" height="300">
+    <img src="image/c.jpg" alt="" width="200" height="300">
+    <script>
+        var imgObjs = document.getElementsByTagName("img");
+        for (var i = 0; i < imgObjs.length; i++) {
+            imgObjs[i].onclick = function() {
+                alert("我被點擊了！");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

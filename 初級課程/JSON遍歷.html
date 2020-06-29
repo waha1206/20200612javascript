@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //json裡面的屬性排列，是無序的，所以無法使用 for 迴圈 帶入 [i]遍歷
+        //Array數組是有序的 所以可以用for [0] [1] [2] 做遍歷
+        var json = {
+            "name": "Leo",
+            "age": "18",
+            "sex": "男"
+        };
+        for (var key in json) {
+            console.log(json[key]);
+            //json裡面 一個鍵 (key) 對應 一個值 (value)
+            //鍵與值 都會被雙引號 包覆起來
+            //不能使用json.key  因為， .後面會是一個屬性，
+            //因為js是動態的語言，所以執行到 .的時候，後面的變數會被宣告
+            //這時候會得到一個 undefined 的訊息  注意！ undefined 並非報錯
+        }
+    </script>
+</body>
+
+</html>

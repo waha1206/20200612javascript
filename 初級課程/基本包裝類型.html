@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //基本類型 Number String Bollean
+        //普通變量不能直接調用屬性跟方法
+        //對象可以直接調用屬性跟方法
+        var num = 10; //基本類型
+        var num2 = Number("10"); //基本轉換，沒有new --- 類型轉換
+        var num2 = new Number(); //基本包裝類型
+
+        var str = "hello"; //原來是普通變量
+        var newStr = str.replace("ll", "oo"); //調用屬性或方法後，變成對象
+        //基本包裝類型：本身是基本類型，但是在執行代碼的過程中，如果這種類型的變量調用了屬性或是方法，那麼，這種類型就不再是基本類型了，而是基本包裝類型，這個變量也不是普通的變量了，而是基本包裝類型對象
+
+        console.log(newStr);
+        //很噁心的類型
+        //如果一個對象&&true，那麼結果是true
+        //如果一個true&&對象，那麼結果是對象
+
+        var flag = new Boolean(false);
+        var result = flag && true; // flag放前面是代表他是 對象，所以返回true
+        console.log(result);
+        var result = true && flag; //放後面會返回flag他的內容值
+        console.log(result);
+    </script>
+</body>
+
+</html>

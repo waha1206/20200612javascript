@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+</head>
+
+<body>
+    <input type="button" value="點擊修改" id="btn">
+    <input type="button" value="點擊隱藏" id="btn2">
+    <br/>
+    <br/>
+    <div id="dv">
+
+    </div>
+
+    <script>
+        //凡是在css的屬性，帶有一個 - (意謂多個單詞的寫法) 例如：background-color
+        //在js代碼DOM的操作中，把 - 去掉，後面的單詞第一個字改大寫即可，這是潛規則
+        //例如：backgroundColor
+        my$("btn").onclick = function() {
+            my$("dv").style.width = "300px";
+            my$("dv").style.height = "200px";
+            my$("dv").style.backgroundColor = "hotpink";
+        };
+        my$("btn2").onclick = function() {
+            if (my$("dv").style.display == "none") {
+                my$("dv").style.display = "block";
+                my$("btn2").value = "隱藏div";
+            } else {
+                my$("dv").style.display = "none";
+                my$("btn2").value = "顯示div";
+            }
+        };
+    </script>
+</body>
+
+</html>

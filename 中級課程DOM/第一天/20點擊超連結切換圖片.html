@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 640;
+            height: 480px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <a href="image/b.jpg" id="ak"><img src="image/a.jpg" alt="" id="im"></a>
+
+    <script>
+        var imgObj = document.getElementById("im");
+        var akObj = document.getElementById("ak");
+        imgObj.onclick = function() {
+            let temp;
+            console.log("圖片被點擊到了");
+            temp = imgObj.src;
+            imgObj.src = akObj.href;
+            akObj.href = temp;
+            return false;
+        }
+        imgObj.onmouseover = function() {
+            this.height += 5;
+            this.width += 5;
+
+
+        }
+        imgObj.onmouseout = function() {
+            this.width -= 5;
+            this.height -= 5;
+        }
+    </script>
+</body>
+
+</html>

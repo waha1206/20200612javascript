@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="點擊改變文本框的值" id="btn" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <input type="text" value="" /><br />
+    <script>
+        document.getElementById("btn").onclick = function() {
+            var inputObjs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputObjs.length; i++) {
+                if (inputObjs[i].type == "text") {
+                    inputObjs[i].value = "我被賦值了！";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

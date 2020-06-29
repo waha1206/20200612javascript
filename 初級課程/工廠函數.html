@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //缺點，不能分辨這個對象到底是什麼類型的
+        //typeof instanceof
+        function createPerson(name, age) {
+            var obj = new Object;
+            obj.name = name;
+            obj.age = age;
+            obj.eat = function() {
+                console.log("吃東西!");
+            };
+            return obj;
+        }
+        var per1 = createPerson("Leo", 18);
+        console.log(per1.name);
+        console.log(per1.age);
+        per1.eat();
+        per1["eat"]();
+
+        //字面量定義
+        var obj = {
+            name: "Leo",
+            age: 18,
+            sayHi: function() {
+                console.log("我是" + this.name);
+            },
+            eat: function() {
+                console.log("吃吃");
+            }
+        };
+        console.log(obj.name);
+        console.log(obj.age);
+        obj.eat();
+        obj.sayHi();
+    </script>
+</body>
+
+</html>

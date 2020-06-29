@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="沒懷孕" />
+    <input type="button" value="沒懷孕" />
+    <input type="button" value="沒懷孕" />
+    <input type="button" value="沒懷孕" />
+    <input type="button" value="沒懷孕" />
+    <script>
+        var btnObjs = document.getElementsByTagName("input");
+        console.log(btnObjs);
+        for (var i = 0; i < btnObjs.length; i++) {
+            btnObjs[i].onclick = function() {
+                for (var j = 0; j < btnObjs.length; j++) {
+                    btnObjs[j].value = "沒懷孕";
+                }
+                this.value = "我懷孕了！";
+            }
+        }
+    </script>
+</body>
+
+</html>

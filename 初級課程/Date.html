@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var dt = new Date();
+        console.log(dt);
+
+        var dt = new Date("2019-6-24");
+        console.log(dt);
+
+        //取得毫秒 1970 年至今 -- 注意沒有 new
+        var dt = Date.now();
+        console.log(dt);
+        //
+        var dt = new Date();
+        console.log(dt.toString());
+        console.log(dt.toLocaleDateString());
+        console.log(dt.toLocaleTimeString());
+    </script>
+</body>
+
+</html>

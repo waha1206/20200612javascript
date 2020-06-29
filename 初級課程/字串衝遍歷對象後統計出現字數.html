@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var str = "SxwpeojVasjdjipSADGGJfweofhohGWAIEGNI";
+        //第一步：首先把字串轉成小寫
+        var str = str.toLocaleLowerCase();
+        console.log(str);
+        //第二步：塞成json格式
+        var json = {};
+        for (var i = 0; i < str.length; i++) {
+            var key = str[i];
+            if (json[key]) {
+                json[key] += 1;
+            } else {
+                json[key] = 1;
+            }
+        }
+        for (var key in json) {
+            console.log(key + "的總數一共有" + json[key] + "個");
+        }
+    </script>
+
+</body>
+
+</html>

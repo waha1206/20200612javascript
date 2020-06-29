@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+</head>
+
+<body>
+    <input type="button" name="" id="btn" value="點我獲取name1元素"><br/><br/>
+    <input type="text" value="您好" name="name1"><br/>
+    <input type="text" value="您好" name="name2"><br/>
+    <input type="text" value="您好" name="name1"><br/>
+    <input type="text" value="您好" name="name3"><br/>
+    <input type="text" value="您好" name="name1"><br/>
+    <input type="text" value="您好" name="name1"><br/>
+
+    <script>
+        //name這個屬性，通常只有表單類的標籤才會擁有
+        my$("btn").onclick = function() {
+            var inputs = document.getElementsByName("name1");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].value = "我很好";
+            }
+        };
+    </script>
+</body>
+
+
+</html>

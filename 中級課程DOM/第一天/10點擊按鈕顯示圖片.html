@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="顯示圖片" id="btn">
+    <img src="" alt="" id="im">
+    <script>
+        document.getElementById("btn").onclick = function() {
+            var imObj = document.getElementById("im");
+            imObj.src = "image/f.jpg";
+            //imObj.width = "200";
+        };
+        document.getElementById("im").onclick = function() {
+            var imObj = document.getElementById("im");
+            if (imObj.width == "200") {
+                imObj.width = "640";
+            } else {
+                imObj.width = "200";
+            }
+        };
+    </script>
+</body>
+
+</html>
