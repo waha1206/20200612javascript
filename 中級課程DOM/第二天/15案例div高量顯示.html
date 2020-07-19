@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            height: 200px;
+            width: 150px;
+            background-color: pink;
+            float: left;
+            margin-left: 10px;
+            border: 2px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        var divObjs = document.getElementsByTagName("div");
+        for (var i = 0; i < divObjs.length; i++) {
+            //當滑鼠移動到上面的顯示
+            divObjs[i].onmouseover = function() {
+                this.style.border = "2px solid blue";
+            };
+
+            //當滑鼠離開時候的顯示
+            divObjs[i].onmouseout = function() {
+                this.style.border = "";
+            };
+
+        }
+    </script>
+</body>
+
+</html>

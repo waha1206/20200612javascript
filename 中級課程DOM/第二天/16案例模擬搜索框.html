@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        input {
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value="請輸入搜尋內容" id="txt">
+
+    <script>
+        //獲取文本框
+
+        //註冊獲取焦點的事件
+        my$("txt").onfocus = function() {
+            if (this.value == "請輸入搜尋內容") {
+                this.value = "";
+                this.style.color = "black";
+            }
+        };
+        //註冊失去焦點的事件
+        my$("txt").onblur = function() {
+            if (this.value.length == 0) {
+                this.value = "請輸入搜尋內容";
+                this.style.color = "gray";
+            }
+        };
+    </script>
+</body>
+
+</html>

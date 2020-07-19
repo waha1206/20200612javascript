@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        .cls {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="點我彈出視窗" id="btn">
+
+    <p>我是一個P</p>
+    <p class="cls">我是一個P</p>
+    <span>我是一個span</span>
+    <span class="cls">我是一個span</span>
+
+    <script>
+        var btnObj = document.querySelector("#btn");
+        btnObj.onclick = function() {
+            alert("哈哈，使用querySelector跳出視窗，並且使用querySelector讓紅色變黃色！");
+            var clsObjs = document.querySelectorAll(".cls");
+            for (var i = 0; i < clsObjs.length; i++) {
+                clsObjs[i].style.backgroundColor = "yellow";
+            }
+        };
+    </script>
+</body>
+
+</html>

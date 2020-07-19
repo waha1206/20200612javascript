@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            width: 2000px;
+            height: 70px;
+            background-color: pink;
+            margin-top: 10px;
+        }
+        
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>我是LEO</p>
+    <p class="cls">我是WAHA 我的class = "cls"</p>
+    <div></div>
+    <div class="cls">我的class也是等於 cls</div>
+
+    <button id="btn">改變class是cls的背景顏色</button>
+
+    <body>
+        <script>
+            my$('btn').onclick = function() {
+                var objs = document.getElementsByClassName('cls');
+                for (var i = 0; i < objs.length; i++) {
+                    objs[i].style.backgroundColor = "red";
+                }
+
+            }
+        </script>
+
+</html>
