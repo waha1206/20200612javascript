@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/common-dom.js"></script>
+    <style>
+
+    </style>
+</head>
+<input type="text" id="txt">
+
+<body>
+    <script>
+        my$("txt").onkeydown = function() {
+            if (this.value.length >= 6 && this.value.length <= 10) {
+                this.style.backgroundColor = "red";
+            } else {
+                this.style.backgroundColor = "green";
+            }
+        };
+    </script>
+</body>
+
+</html>
