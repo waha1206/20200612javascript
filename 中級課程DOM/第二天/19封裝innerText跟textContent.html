@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        #btn {
+            margin-bottom: 10px;
+        }
+        
+        div {
+            height: 100px;
+            width: 100px;
+            border: 2px solid red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">改變文本內容</button>
+    <div id="dv">還沒有變化</div>
+    <div id="dv2"></div>
+
+
+    <script>
+        //要看這個屬性有沒有被支持，要靠判斷undefined這個狀態
+        //函式有兩個，分別為 set (沒有傳回值)  get (有傳回值)
+
+        //function setinnerText(element, text) {
+        //    if (typeof element.textContent) {
+        //        element.innerText = text;
+        //    } else {
+        //        element.textContent = text;
+        //    }
+        //}
+
+        //function getinnerText(element) {
+        //    if (typeof element.textContent) {
+        //        return element.textContent;
+        //    } else {
+        //        return element.textContent;
+        //    }
+        //}
+
+        my$("btn").onclick = function() {
+            //my$("dv").innerText = "哈哈，改變了";
+            //設定需要兩個參數 element 跟 要修改的內容
+            setinnerText(my$("dv"), "哈哈，改變了");
+            //get 只需要一個參數，就是傳入該元素即可
+            setinnerText(my$("dv2"), getinnerText(my$("dv")));
+        }
+    </script>
+</body>
+
+</html>

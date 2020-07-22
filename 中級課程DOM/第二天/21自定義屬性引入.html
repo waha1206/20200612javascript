@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        li {
+            list-style: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>AAAAA</li>
+        <li>BBBBB</li>
+        <li>CCCCC</li>
+        <li>DDDDD</li>
+        <li>EEEEE</li>
+    </ul>
+
+    <script>
+        //總結：設置自定義屬性的值：setAttribute("屬性名字","屬性的值")
+        //總結：獲取自定義屬性的值：getAttribute("屬性的名字")
+        var liObjs = document.getElementsByTagName("li");
+        for (var i = 0; i < liObjs.length; i++) {
+            //下面這種方式，自定義屬性在DOM對象上，不再標籤中！所以盡量不用
+            //liObjs[i].score = (i + 1) * 10;
+            //liObjs[i].onclick = function() {
+            //    alert(this.score);
+            //};
+
+            //使用這種方式，會把標籤中直接放值
+            liObjs[i].setAttribute("score", (i + 1) * 10);
+            liObjs[i].onclick = function() {
+                alert(this.getAttribute("score"));
+            };
+        }
+    </script>
+</body>
+
+</html>

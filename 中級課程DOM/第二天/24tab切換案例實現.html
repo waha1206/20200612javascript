@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            list-style-type: none;
+        }
+        
+        .box {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        
+        .hd {
+            height: 45px;
+        }
+        
+        .hd span {
+            display: inline-block;
+            width: 90px;
+            background-color: pink;
+            line-height: 45px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .hd span.current {
+            background-color: purple;
+        }
+        
+        .bd li {
+            height: 255px;
+            background-color: purple;
+            display: none;
+            color: aliceblue;
+        }
+        
+        .bd li.current {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="hd">
+            <span class="current">体育</span>
+            <span>娱乐</span>
+            <span>新闻</span>
+            <span>综合</span>
+        </div>
+        <div class="bd">
+            <ul>
+                <li class="current">我是体育模块</li>
+                <li>我是娱乐模块</li>
+                <li>我是新闻模块</li>
+                <li>我是综合模块</li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/common-dom.js"></script>
+    <script>
+        var spans = my$("box").getElementsByTagName("span");
+        var lis = my$("box").getElementsByTagName("li");
+        console.log(spans);
+        console.log(lis);
+        //第一件事情，把所以的spans建立他的index紀錄是哪個tag被點擊
+        //第二件事情，把所有span的onclick建立事件
+        //第三件事情，先移除所有的className = ""
+        //第四件事情，把this的className = "current"
+        for (var i = 0; i < spans.length; i++) {
+            spans[i].setAttribute("index", i);
+            spans[i].onclick = function() {
+                for (var j = 0; j < spans.length; j++) {
+                    spans[j].removeAttribute("class");
+                }
+                this.className = "current";
+                for (var k = 0; k < lis.length; k++) {
+                    //先把所有的class移除
+                    lis[k].removeAttribute("class");
+                }
+                var num = this.getAttribute("index");
+                console.log(num);
+                lis[num].className = "current";
+            };
+            //接下來處理li 的部分
+        }
+    </script>
+
+
+</body>
+
+</html>

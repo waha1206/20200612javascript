@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">innerText</button>
+    <button id="btn2">innerHTML</button>
+    <br>
+    <div id="dv">
+        我是div
+        <div>
+            我是div下面的div
+            <p>我是一個P</p>
+        </div>
+    </div>
+
+    <script>
+        // innerText --- 取文本而已
+        // innerHTML --- 會把標籤也取出來
+        my$("btn1").onclick = function() {
+            console.log(my$("dv").innerText);
+        };
+        my$("btn2").onclick = function() {
+            console.log(my$("dv").innerHTML);
+        };
+    </script>
+</body>
+
+</html>
