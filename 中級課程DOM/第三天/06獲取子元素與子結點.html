@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv">哈嚕
+        <p>我</p>
+        <input type="text">
+        <ul id="uu">
+            <li>AAA</li>
+            <li>BBB</li>
+            <li>CCC</li>
+            <li>DDD</li>
+            <li>EEE</li>
+        </ul>
+    </div>
+    <script>
+        //div
+        var dvObj = my$("dv");
+        console.log(dvObj.childNodes);
+        console.log(dvObj.children);
+
+        //獲取子結點---遍歷
+        for (var i = 0; i < dvObj.childNodes.length; i++) {
+            var node = dvObj.childNodes[i];
+            //nodeType: 1=標籤, 2=屬性, 3=文本
+            //nodeName: 大寫=標籤, 小寫=屬性, #text=文本
+            //nodeValue: null=標籤, 屬性的值=屬性, 文本內容=文本
+            console.log(node.nodeType + "===" + node.nodeName + "===" + node.nodeValue);
+            console.log(i);
+        }
+
+        var node = dvObj.getAttributeNode("id");
+        //2=屬性 nodeName 屬性 = 小寫 (id)
+        console.log(node.nodeType + "===" + node.nodeName);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="dv">
+        <p></p>
+        <input type="text">
+        <ul id="uu">
+            <li>AAA</li>
+            <li>BBB</li>
+            <li>CCC</li>
+            <li>DDD</li>
+            <li>EEE</li>
+        </ul>
+    </div>
+    <script>
+        var ulObj = my$("uu");
+        console.log(ulObj.parentNode);
+        console.log(ulObj.parentElement);
+        //type 1 = 標籤
+        console.log(ulObj.parentNode.nodeType);
+        //標籤的名字 = 大寫
+        console.log(ulObj.parentNode.nodeName);
+        //標籤的傳回值 = null
+        console.log(ulObj.parentNode.nodeValue);
+    </script>
+</body>
+
+</html>
