@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/common-dom.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="dv">喔喔
+        <span>這是div中的第一個span標籤</span>
+        <p>這是div中的第二個元素，第一個p標籤</p>
+        <ul id="uu">哈哈
+            <li>第一個li</li>
+            <li>第二個li</li>嘿嘿
+            <li id="three">第三個li</li>呵呵
+            <li>第四個li</li>
+            <li>第五個li</li>嘎嘎
+        </ul>
+    </div>
+
+    <script>
+        var ulObj = my$("uu");
+        //父級節點
+        console.log(ulObj.parentNode);
+        //父級元素
+        console.log(ulObj.parentElement);
+        //子節點
+        console.log(ulObj.childNodes);
+        //子元素
+        console.log(ulObj.children);
+        console.log("===============下面的IE8使用會有問題===============");
+        //下面的IE8使用會有問題
+        //第一個子節點
+        console.log(ulObj.firstChild);
+        //第一個子元素
+        console.log(ulObj.firstElementChild);
+        //最後一個子節點
+        console.log(ulObj.lastChild);
+        //最後一個子元素
+        console.log(ulObj.lastElementChild);
+        //某元素的前一個兄弟節點
+        console.log(my$("three").previousSibling);
+        //某元素的前一個兄弟元素
+        console.log(my$("three").previousElementSibling);
+        //某元素的後一個兄弟節點
+        console.log(my$("three").nextSibling);
+        //某元素的後一個兄弟元素
+        console.log(my$("three").nextElementSibling);
+    </script>
+</body>
+
+</html>
