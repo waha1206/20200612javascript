@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 200px;
+            height: 400px;
+            border: 2px solid pink;
+        }
+        
+        ul {
+            list-style-type: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="創建列表" id="btn">
+    <div id="dv"></div>
+
+    <script>
+        var arr = ["aaa", "bbb", "ccc", "ddd", "eee", "fff"];
+        my$("btn").onclick = function() {
+                var ulObj = document.createElement("ul");
+                my$("dv").appendChild(ulObj);
+                for (var i = 0; i < arr.length; i++) {
+                    var liObj = document.createElement("li");
+                    setinnerText(liObj, arr[i]);
+                    ulObj.appendChild(liObj);
+                    liObj.onclick = onclickHandle;
+                }
+            }
+            //下面是命名函數，迴圈的時候，建議使用命名函數，可以解省空間
+            //如果是一次性的事件，推薦使用匿名函數
+        function onclickHandle() {
+            if (this.style.backgroundColor) {
+                this.style.backgroundColor = "";
+                //長知識了，innerText 竟然有 str 的特性，記起來
+                this.innerText = this.innerText.replace("---已選取", "");
+                //var str = this.innerText;
+                //this.innerText = str.replace("---已選取", "");
+
+            } else {
+                this.style.backgroundColor = "#e0e0e0";
+                this.innerText += "---已選取";
+            }
+        }
+    </script>
+</body>
+
+</html>

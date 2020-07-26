@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 400px;
+            height: 400px;
+            border: 2px solid red;
+            margin-left: 20px;
+        }
+        
+        input {
+            margin: 20px 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="button" value="創建表格" id="btn">
+    <div id="dv"></div>
+
+    <script>
+        var arr = [{
+            name: "雅虎",
+            href: "http://yahoo.com.tw"
+        }, {
+            name: "谷歌",
+            href: "http://google.com"
+        }, {
+            name: "麥歐",
+            href: "http://myoacg.com"
+        }];
+        my$("btn").onclick = function() {
+            //首先要創建一個table放到dv裡面
+            var tbObj = document.createElement("table");
+            tbObj.border = "1";
+            tbObj.cellPadding = "0";
+            tbObj.cellSpacing = "0";
+            my$("dv").appendChild(tbObj);
+            //看一下jason裡面有幾筆資料，用遍歷去創建
+            //先創建行，再來塞欄位
+            for (var i = 0; i < arr.length; i++) {
+                //創建行 tr
+                var trObj = document.createElement("tr");
+                //有兩個欄位，所以創建兩次 td1 td2
+                var td1Obj = document.createElement("td");
+                var td2Obj = document.createElement("td");
+                td1Obj.style.padding = "5px";
+                td2Obj.style.padding = "5px";
+                //把td1放到tr裡面
+                tbObj.appendChild(trObj);
+                //給予td1 innerText 值，jason格式
+                td1Obj.innerText = arr[i].name;
+                //把td2放到tr裡面
+                trObj.appendChild(td1Obj);
+                //給予td1 innerHtml 值，jason格式，順便塞入a標籤，並且把資料放入a標籤
+                td2Obj.innerHTML = "<a href=" + arr[i].href + ">" + arr[i].name + "</a>";
+                trObj.appendChild(td2Obj);
+            }
+        };
+    </script>
+</body>
+
+</html>

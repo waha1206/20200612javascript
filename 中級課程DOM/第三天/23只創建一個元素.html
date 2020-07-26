@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 400px;
+            height: 400px;
+            border: 2px solid pink;
+        }
+        
+        #btn1 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="只創建一個元素" id="btn1">
+    <div id="dv"></div>
+
+    <script>
+        //只創建一個元素
+        //先判斷有沒有，有的話就刪除，沒有就創建
+        my$("btn1").onclick = function() {
+            //有則刪除，無則創建
+            if (my$("btn2")) {
+                my$("dv").removeChild(my$("btn2"));
+            }
+            //創建元素放進去
+            var btnObj = document.createElement("input");
+            btnObj.type = "button";
+            btnObj.value = "按鈕";
+            btnObj.id = "btn2";
+            my$("dv").appendChild(btnObj);
+        };
+
+        //下面是優化代碼
+        //裡面有沒有這個元素---btn2---沒有的話就創建，連刪除都不需要
+        if (!my$("btn2")) {
+            //創建元素放進去
+            var btnObj = document.createElement("input");
+            btnObj.type = "button";
+            btnObj.value = "按鈕";
+            btnObj.id = "btn2";
+            my$("dv").appendChild(btnObj);
+        }
+    </script>
+</body>
+
+</html>

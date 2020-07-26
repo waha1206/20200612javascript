@@ -34,16 +34,17 @@
         console.log(ulObj.childNodes);
         //子元素
         console.log(ulObj.children);
+
         console.log("===============下面的IE8使用會有問題===============");
         //下面的IE8使用會有問題
         //第一個子節點
-        console.log(ulObj.firstChild);
+        console.log(ulObj.firstChild); //------------------IE8中是第一個子元素
         //第一個子元素
-        console.log(ulObj.firstElementChild);
+        console.log(ulObj.firstElementChild); //-----------IE8不支持
         //最後一個子節點
-        console.log(ulObj.lastChild);
+        console.log(ulObj.lastChild); //-------------------IE8中是第一個子元素
         //最後一個子元素
-        console.log(ulObj.lastElementChild);
+        console.log(ulObj.lastElementChild); //------------IE8不支持
         //某元素的前一個兄弟節點
         console.log(my$("three").previousSibling);
         //某元素的前一個兄弟元素
@@ -52,6 +53,11 @@
         console.log(my$("three").nextSibling);
         //某元素的後一個兄弟元素
         console.log(my$("three").nextElementSibling);
+
+        //凡是獲取節點的代碼，在谷歌合火狐得到的都是相關的節點
+        //凡是獲取元素的代碼，在谷歌合火狐得到的都是相關的元素
+        //從子節點與兄弟節點開始，凡是獲取節點的代碼在IE8中得到的是元素
+        //獲取元素的相關代碼，在IE8中得到的是undefined --- 元素的代碼，在IE8中不支持
     </script>
 </body>
 

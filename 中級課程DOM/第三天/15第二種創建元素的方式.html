@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            border: 2px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="點我創建一個P" id="btn">
+    <div id="dv"></div>
+
+    <script>
+        my$("btn").onclick = function() {
+            my$("dv").innerHTML = "<p>我是一個P</p>";
+        };
+    </script>
+</body>
+
+</html>

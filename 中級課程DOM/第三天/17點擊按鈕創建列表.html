@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            width: 200px;
+            height: 300px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="創建列表" id="btn">
+    <div id="dv"></div>
+
+
+    <!-- my$("btn").onclick = function() {
+		//如果裡面的圖片位置是變數的話，要使用  " <imgsrc="+this.src+">   ""
+		my$("dv").innerHTML = "<ul> <li > AAA </li> <li> BBB </li> <li > CCC </li> </ul>";
+	} -->
+
+    <script>
+        var names = ["aaa", "bbb", "ccc", "ddd", "eee", "fff"];
+        my$("btn").onclick = function() {
+            var str = "";
+            str += "<ul style='list-style-type:none;cursor:pointer'>";
+            for (var i = 0; i < names.length; i++) {
+                str += "<li>" + names[i] + "</li>";
+            }
+            str += "</ul>";
+            my$("dv").innerHTML = str;
+
+            //代碼執行到這，li已經有了
+            //獲取所有的li,遍歷,添加鼠標進入事情，鼠標離開事件
+            var list = my$("dv").getElementsByTagName("li");
+            console.log(list);
+            for (var i = 0; i < list.length; i++) {
+                list[i].onmouseover = function() {
+                    this.style.backgroundColor = "yellow";
+                };
+                list[i].onmouseout = function() {
+                    this.style.backgroundColor = "";
+                };
+
+            }
+        };
+    </script>
+</body>
+
+</html>

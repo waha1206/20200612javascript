@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            border: 2px dashed pink;
+        }
+        
+        p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="點我創建一個P" id="btn">
+    <div id="dv"></div>
+
+    <script>
+        my$("btn").onclick = function() {
+            //創造一個P標籤
+            var pObj = document.createElement("P");
+            //給p元素一些內容吧
+            setinnerText(pObj, "這是一個p");
+            //追加到div裡面 append = 不斷加加
+            my$("dv").appendChild(pObj);
+        };
+    </script>
+</body>
+
+</html>

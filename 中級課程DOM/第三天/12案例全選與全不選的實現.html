@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .wrap {
+            width: 300px;
+            margin: 100px auto 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+        
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+        
+        th {
+            background-color: #09c;
+            font: bold 16px "微软雅黑";
+            color: #fff;
+        }
+        
+        td {
+            font: 14px "微软雅黑";
+        }
+        
+        tbody tr {
+            background-color: #f0f0f0;
+        }
+        
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="j_cbAll" />
+                    </th>
+                    <th>菜名</th>
+                    <th>饭店</th>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>红烧肉</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>西红柿鸡蛋</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>油炸榴莲</td>
+                    <td>田老师</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" />
+                    </td>
+                    <td>清蒸助教</td>
+                    <td>田老师</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        //取得th的ID --- 最上面的checkbox
+        var cbAllObj = my$("j_cbAll");
+        //取得所有j_tb下面的input checkbox
+        var cks = my$("j_tb").getElementsByTagName("input");
+        //為最上面checkbox增加點擊事件
+        cbAllObj.onclick = function() {
+            for (var i = 0; i < cks.length; i++) {
+                //要是最上面的checkbox被選擇點中，下面的checkbox
+                //就被選擇也被點中，反之亦然
+                cks[i].checked = this.checked;
+            }
+        };
+        //為下面的checkbox作所有點擊事件
+        //要是被全選中，最上面的checkbox就會被打勾
+        //要是沒有全被選中，最上面的checkbox就會被取消打勾
+        for (var i = 0; i < cks.length; i++) {
+            //為每個cks增加點擊事件
+            cks[i].onclick = function() {
+                //先假設下面每個cks都被點中
+                var flag = true;
+                //檢查是否每個cks都被點中
+                for (var j = 0; j < cks.length; j++) {
+                    //如果有一個沒有被選中的話
+                    if (!cks[j].checked) {
+                        flag = false;
+                        break;
+                    }
+                }
+                //flag = true 則 最上面的checkbox的checked = true 反之 = false
+                cbAllObj.checked = flag;
+            };
+        }
+    </script>
+</body>
+
+</html>

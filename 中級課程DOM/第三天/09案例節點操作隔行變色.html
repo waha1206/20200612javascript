@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" id="btn" value="點我隔行變色">
+    <ul id="uu">
+        <li>11111</li>
+        <li>22222</li>
+        <li>33333</li>
+        <li>44444</li>
+        <li>55555</li>
+        <li>66666</li>
+        <li>77777</li>
+        <li>88888</li>
+    </ul>
+
+    <script>
+        my$("btn").onclick = function() {
+            var uuObjs = my$("uu");
+            var nodes = uuObjs.childNodes;
+            var count = 0;
+            console.log(nodes.length);
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].nodeType == 1 && nodes[i].nodeName == "LI") {
+                    count += 1;
+                    console.log(count);
+                    nodes[i].style.backgroundColor = count % 2 ? "red" : "yellow";
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        input {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="元素綁定多個事件" id="btn">
+    <br>
+    <textarea id="ta" name="ta" rows="30" cols="150">
+事件綁定有兩種，互相不支持 --- 為事件綁定對象DOM
+1.對象.addEventListener("事件",事件函數--命名函數--逆名函數,false)--谷歌，火狐支持，IE8不支持
+2.對象.attachEvent("事件--要加on",事件函數--命名函數--逆名函數)--只有IE8支持
+
+google與火狐的寫法
+my$("btn").addEventListener("click", function() {
+	console.log("綁定第一個事件");
+}, false);
+my$("btn").addEventListener("click", function() {
+	console.log("綁定第二個事件");
+}, false);
+my$("btn").addEventListener("click", function() {
+	console.log("綁定第三個事件");
+}, false);
+
+IE8的寫法
+my$("btn").attachEvent("onclick", function() {
+	console.log("綁定第一個事件");
+})
+my$("btn").attachEvent("onclick", function() {
+	console.log("綁定第二個事件");
+})
+	</textarea>
+    <script>
+        my$("btn").addEventListener("click", function() {
+            console.log("綁定第一個事件");
+        }, false);
+        my$("btn").addEventListener("click", function() {
+            console.log("綁定第二個事件");
+        }, false);
+        my$("btn").addEventListener("click", function() {
+            console.log("綁定第三個事件");
+        }, false);
+
+        my$("btn").attachEvent("onclick", function() {
+            console.log("綁定第一個事件");
+        })
+        my$("btn").attachEvent("onclick", function() {
+            console.log("綁定第二個事件");
+        })
+    </script>
+</body>
+
+</html>

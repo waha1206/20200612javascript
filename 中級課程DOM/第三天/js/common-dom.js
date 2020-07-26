@@ -58,3 +58,49 @@ function getDate(dt) {
     second = getTowNumber(second);
     return year + "年" + month + "月" + day + "日" + " " + hour + ":" + minute + ":" + second;
 }
+
+//獲取任一父級元素的第一個子級元素
+//注意IE8不支援 element.firstElementChild
+//IE8支援element.firstChild，但是遇到節點要排除，直到判斷找到元素
+function getFirstElementChild(element) {
+    if (element.firstElementChild) {
+        return element.firstElementChild;
+    } else {
+        var node = element.firstChild;
+        //nodeType 1=元素  2=屬性  3=文本內容
+        while (node && nodeType != 1) {
+            //如果node不存在或是node不是 1 (元素標籤) 就在找下一個
+            node = node.nextSibling;
+        }
+        return node;
+    }
+}
+//獲取任一父級元素的最後一個子級元素
+function getLastElementChild(element) {
+    if (element.lastElementChild) {
+        return element.lastElementChild;
+    } else {
+        var node = element.LastChild;
+        while (node && nodeType != 1) {
+            node = node.previousSibling;
+        }
+        return node;
+    }
+}
+
+//為元素綁定的兼容代碼
+/**
+ *
+ *
+ * @param {element, type, fn} 元素, 事件不帶on, 事件處理函數
+ * @returns {} 無返回值
+ */
+function addEventListener(element, type, fn) {
+    if (element.addEventListener) {
+        element.addEventListener(type, fn, false);
+    } else if (element.attachEvent) {
+        element.attachEvent("on" + type, fn);
+    } else {
+        element["on" + type] = fn;
+    }
+}

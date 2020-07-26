@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        input {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="為任意元素綁定任意事件" id="btn">
+    <br>
+    <textarea id="ta" name="ta" rows="30" cols="150">
+總結綁定事件的區別
+addEventListener();
+attachEvent();
+1.方法不一樣  addEventListener("click", fn, false) attachEvent("onclick", fn)
+2.名稱不一樣
+3.addEventListener() --谷歌、火狐支持   IE8不支持
+  attachEvent() --IE8支持  火狐、谷歌不支持
+4.this 不一樣
+  addEventListener() --綁定事件的該元素
+  attachEvent() --windows
+5.事件類型中的參數不一樣
+  addEventListener-- type = click  沒有on
+  attachEvent-- type = onclick  有on
+
+
+	</textarea>
+    <script>
+        //element, type, fn
+        addEventListener(my$("btn"), "click", function() {
+            console.log(this);
+            console.log("這裡的this===>" + this);
+        })
+    </script>
+</body>
+
+</html>

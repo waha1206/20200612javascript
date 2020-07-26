@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        input {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="為任意元素綁定任意事件" id="btn">
+    <br>
+    <textarea id="ta" name="ta" rows="30" cols="150">
+對象綁定事件有三種方式
+addEventListener---綁定多個、attachEvent--綁定多個、對象.onclick = fn---這只能綁定一個事件
+
+為任意的對象綁定事件會需要三個參數 1.任意的元素  2.任意的事件  3.事件處裡函數
+function addEventListener(element, type, fn) (){}
+
+IE8的事件前面都會要加上on 但是我們自己寫的函式參數只會導入 click 所以IE8的參數要用 "on"+type
+
+程式碼：  --- 這段程式碼已經移去了 common-dom.js
+function addEventListener(element, type, fn) {
+	if (element.addEventListener) {
+		element.addEventListener(type, fn, false);
+	} else if (element.attachEvent) {
+		element.attachEvent("on" + type, fn);
+	} else {
+		element["on" + type] = fn;
+	}
+}
+
+函數跟方法不同點，函數是獨立的，方法是對象 . 點出來的 例如
+my$("btn").addEventListener("type", fn, false) --- 方法
+addEventListener(element, type, fn) --- 函數
+雖然名字一樣，但是，不衝突
+
+
+	</textarea>
+    <script>
+        addEventListener(my$("btn"), "click", function() {
+            console.log("addEventListener綁定的第一個事件")
+        })
+        addEventListener(my$("btn"), "click", function() {
+            console.log("addEventListener綁定的第二個事件")
+        })
+        addEventListener(my$("btn"), "click", function() {
+            console.log("addEventListener綁定的第三個事件")
+        })
+    </script>
+</body>
+
+</html>
