@@ -16,12 +16,50 @@
 <body>
     <input type="button" value="btn1.onclick綁定事件" id="btn1">
     <input type="button" value="解綁btn1的coclick事件" id="btn2">
+    <input type="button" value="addEventListener綁定事件" id="btn3">
+    <input type="button" value="解綁addEventListener事件" id="btn4">
     <br>
     <textarea id="ta " name="ta " rows="30 " cols="150 ">
-為元素解綁事件的3種方式
+為元素解綁事件的3種方式，要注意的是，用什麼方式綁定事件，就應該用對應的方式解綁事件
+第一種：
+對象.on事件名字=事件處理函數 --- 綁定事件
+對象.on事件名字=null; --- 解綁
+
+第二種：
+使用addEventListener("沒有on的事件類型",命名函數, false)
+解綁使用 removeEventListener("沒有on的事件類型", 命名函數, Flase)
+要注意，解綁這種綁定方式，一定要使用命名函數，無法使用匿名函數
+命名函數：
+functional f1(){
+    console.log("這種是命名函數");
+}
+
+匿名函數：
+functional (){
+    console.log("這種是匿名函數");
+}
 
 	</textarea>
     <script>
+        function f1() {
+            console.log("使用addEventListener綁定事件-f1");
+        }
+
+        function f2() {
+            console.log("使用addEventListener綁定事件-f2");
+        }
+        my$("btn1").onclick = function() {
+            console.log("btn1的點擊事件");
+        }
+        my$("btn2").onclick = function() {
+            my$("btn1").onclick = null;
+        }
+        my$("btn3").addEventListener("click", f1, false);
+        my$("btn3").addEventListener("click", f2, false);
+        my$("btn4").onclick = function() {
+            my$("btn3").removeEventListener("click", f1, false)
+            console.log("把btn3的綁定f1事件解除");
+        };
     </script>
 </body>
 
