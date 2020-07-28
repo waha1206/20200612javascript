@@ -21,6 +21,8 @@
     <br>
     <textarea id="ta " name="ta " rows="30 " cols="150 ">
 為元素解綁事件的3種方式，要注意的是，用什麼方式綁定事件，就應該用對應的方式解綁事件
+如果不想要綁定事件被解綁，要記得使用匿名函數 --- 無法解綁
+要解綁，必須使用命名函數！
 第一種：
 對象.on事件名字=事件處理函數 --- 綁定事件
 對象.on事件名字=null; --- 解綁
@@ -37,7 +39,10 @@ functional f1(){
 匿名函數：
 functional (){
     console.log("這種是匿名函數");
-}
+};
+第三種:
+綁定使用attachEvent("onclick綁定事件", 命名函數)
+解綁使用detachEvent("onclick綁定事件", 命名函數)
 
 	</textarea>
     <script>

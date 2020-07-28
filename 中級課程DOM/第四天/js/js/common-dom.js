@@ -92,15 +92,33 @@ function getLastElementChild(element) {
 /**
  *
  *
- * @param {element, type, fn} 元素, 事件不帶on, 事件處理函數
+ * @param {element, fn, type} 元素, 事件不帶on, 事件處理函數
  * @returns {} 無返回值
  */
-function addEventListener(element, type, fn) {
+function addEventListener(element, fnName, type) {
     if (element.addEventListener) {
-        element.addEventListener(type, fn, false);
+        element.addEventListener(type, fnName, false);
     } else if (element.attachEvent) {
-        element.attachEvent("on" + type, fn);
+        element.attachEvent("on" + type, fnName);
     } else {
         element["on" + type] = fn;
+    }
+}
+
+//為元素解綁事件的兼容代碼
+/**
+ *
+ *
+ * @param {element, fnName, type} 元素, 事件不帶on, 事件處理函數
+ * @returns {} 無返回值
+ */
+
+function removeEventListener(element, fnName, type) {
+    if (element.removeEventListener) {
+        element.removeEventListener(type, fnName, false);
+    } else if (element.detachEvent) {
+        element.detachEvent("on" + type, fnName);
+    } else {
+        element["on" + type] = null;
     }
 }

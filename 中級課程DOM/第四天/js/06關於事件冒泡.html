@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        #dv1 {
+            width: 300px;
+            height: 200px;
+            background-color: red;
+        }
+        
+        #dv2 {
+            width: 250px;
+            height: 150px;
+            background-color: green;
+        }
+        
+        #dv3 {
+            width: 200px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+
+<body id="bd">
+    <div id="dv1">
+        <div id="dv2">
+            <div id="dv3"></div>
+        </div>
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+冒泡事件，有鑲崁關係的元素一定會遇到的問題
+如何阻止事件冒泡：
+window.event.cancelBubble=true; IE8特有的，谷歌支持，火狐不支持
+e.stopPropagation(); 火狐支持，谷歌支持，IE8不支持，因為IE8不認得 e --- function(e) 顯示undefined
+屬性跟方法都是同一個層級，上面都會需要 "對象" 才可以 .出來，所以可以推估 window.event 跟 e 是同個東西
+驚人的發現，在谷歌瀏覽器中，下面兩個東西竟然通用
+window.event.stopPropagation();
+e.stopPropagation();
+更證明了 window.even = e --- 但是IE8就是不承認有這個 e 對象
+繼續再推敲下去！
+既然 window.even 等於 e 只是不同瀏覽器不支持
+那麼 --- 對象.cancelBubble=true; 這個概念是正確的
+所以，我可以使用下面兩種敘述
+1. window.event.cancelBubble = true;
+2. e.cancelBubble = true;
+再來可以寫出兼容代碼 ---判斷那些瀏覽器支援 window.event 或是支援 e
+支援window.even = 谷歌、IE8
+支援e = 火狐、谷歌
+	</textarea>
+    <script>
+        my$("dv1").onclick = function() {
+            console.log(this.id);
+        };
+        my$("dv2").onclick = function() {
+            console.log(this.id);
+            window.event.cancelBubble = true;
+        };
+        my$("dv3").onclick = function(e) {
+            console.log(this.id);
+            console.log(e);
+            console.log(arguments.length);
+            //window.event.stopPropagation();
+            //上面的代碼跟下面的是一樣的
+            //e.stopPropagation();
+            //也跟下面的這行一樣功能
+            e.cancelBubble = true;
+        };
+        my$("bd").onclick = function() {
+            console.log(this.id);
+
+        };
+    </script>
+</body>
+
+</html>

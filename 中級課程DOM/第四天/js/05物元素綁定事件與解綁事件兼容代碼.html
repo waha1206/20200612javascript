@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        input {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="btn1.onclick綁定事件" id="btn1">
+    <input type="button" value="解綁btn1的coclick事件" id="btn2">
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+為元素解綁事件的3種方式，要注意的是，用什麼方式綁定事件，就應該用對應的方式解綁事件
+如果不想要綁定事件被解綁，要記得使用匿名函數 --- 無法解綁
+要解綁，必須使用命名函數！
+
+綁定的代碼：皆已放入commom-dom.js
+function addEventListener(element, fnName, type) {
+    if (element.addEventListener) {
+        element.addEventListener(type, fnName, false);
+    } else if (element.attachEvent) {
+        element.attachEvent("on" + type, fnName);
+    } else {
+        element["on" + type] = fnName;
+    }
+}
+
+解綁的代碼代碼：皆已放入commom-dom.js
+function removeEventListener(element, fnName, type) {
+    if (element.removeEventListener) {
+        console.log("確認有解綁");
+        element.removeEventListener(type, fnName, false);
+    } else if (element.detachEvent) {
+        element.detachEvent("on" + type, fnName);
+    } else {
+        element["on" + type] = null;
+    }
+}
+
+	</textarea>
+    <script>
+        function f1() {
+            console.log("第一個事件");
+        }
+
+        function f2() {
+            console.log("第二個事件");
+        }
+
+        function removeClick() {
+            console.log("解綁btn1第一個事件");
+            removeEventListener(my$("btn1"), f1, "click");
+        }
+
+        addEventListener(my$("btn1"), f1, "click");
+        addEventListener(my$("btn1"), f2, "click");
+        addEventListener(my$("btn2"), removeClick, "click");
+    </script>
+</body>
+
+</html>

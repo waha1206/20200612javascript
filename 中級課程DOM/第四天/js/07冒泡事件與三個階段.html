@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        #dv1 {
+            width: 300px;
+            height: 200px;
+            background-color: red;
+        }
+        
+        #dv2 {
+            width: 250px;
+            height: 150px;
+            background-color: green;
+        }
+        
+        #dv3 {
+            width: 200px;
+            height: 100px;
+            background-color: blue;
+            color: #fff;
+        }
+    </style>
+</head>
+
+
+<body id="bd">
+    <div id="dv1">
+        <div id="dv2">
+            <div id="dv3">DV3</div>
+        </div>
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+冒泡事件有三個階段：
+第一個階段是 --- 捕獲階段
+第二個階段是 --- 目標階段
+第三個階段是 --- 冒泡階段
+
+事件.addEventListener("事件沒有on",事件處理函數,冒泡事件方式---false跟true)
+事件冒泡方式：
+true 會從 目標開始 --- 由內往外，以這個例子來說會是dv3 → dv2 →dv1
+使用e.eventPhase觀察會得到 3 2 2
+false 會從 最外層捕獲開始，目標會最後一個被抓到 (執行的意思)
+以這個例子來說會是 dv1 → dv2 →dv3
+使用e.eventPhase 會是 1 1 3
+
+一個重點 由內而外 或是 由外而內
+由外而內 = 捕獲 --- addEventListener的第三個參數必須為 true
+由內而外 = 冒泡 --- addEventListener的第三個參數必須為 false
+
+此為原始碼，最下面的使用箭頭符號改寫，說真的我也霧颯颯
+var obj = [my$("dv3"), my$("dv2"), my$("dv1")];
+console.log(obj.length);
+obj.forEach(function(ele) {
+    ele.addEventListener("click", function(e) {
+        console.log(this.id + "===" + e.eventPhase);
+    }, false);
+});
+
+	</textarea>
+    <script>
+        var obj = [my$("dv3"), my$("dv2"), my$("dv1")];
+        console.log(obj.length);
+        obj.forEach(ele => ele.addEventListener("click", function(e) {
+            console.log(this.id + "===" + e.eventPhase);
+        }, false))
+
+        const array1 = ['a', 'b', 'c'];
+        array1.forEach(element => console.log(element));
+    </script>
+</body>
+
+</html>

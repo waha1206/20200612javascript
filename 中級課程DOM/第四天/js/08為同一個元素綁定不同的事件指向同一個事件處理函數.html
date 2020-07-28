@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        #btn {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <input type="button" value="我是一顆按鈕" id="btn" />
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+說真的這個沒什麼難度
+判斷一下e.type就可以了
+但是e IE8看不懂，所以還是需要兼容代碼
+
+my$("btn").onclick = f1;
+my$("btn").onmouseover = f1;
+my$("btn").onmouseout = f1;
+
+function f1(e) {
+    console.log(e);
+    console.log(e.type)
+    switch (e.type) {
+        case "click":
+            alert("onclick");
+            break;
+        case "mouseover":
+            this.style.backgroundColor = "red";
+            break;
+        case "mouseout":
+            this.style.backgroundColor = "yellow";
+            break;
+    }
+}
+
+
+	</textarea>
+    <script>
+        my$("btn").onclick = f1;
+        my$("btn").onmouseover = f1;
+        my$("btn").onmouseout = f1;
+
+        function f1(e) {
+            console.log(e);
+            console.log(e.type)
+            switch (e.type) {
+                case "click":
+                    alert("onclick");
+                    break;
+                case "mouseover":
+                    this.style.backgroundColor = "red";
+                    break;
+                case "mouseout":
+                    this.style.backgroundColor = "yellow";
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
