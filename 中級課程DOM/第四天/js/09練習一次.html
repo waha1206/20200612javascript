@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        #box {
+            width: 450px;
+            margin: 200px auto;
+        }
+        
+        #txt {
+            width: 350px;
+        }
+        
+        #pop {
+            width: 350px;
+            border: 1px solid red;
+        }
+        
+        #pop ul {
+            margin: 10px;
+            padding: 0px;
+            width: 200px;
+            list-style-type: none;
+        }
+        
+        #pop ul li {}
+    </style>
+</head>
+
+
+<body>
+    <div id="box">
+        <input type="text" id="txt" value="">
+        <input type="button" value="搜索" id="btn">
+
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+模擬google的搜索列！這個很重要，早就想要學了
+邏輯：
+1.先增加搜索列的事件處理 --- onkeyup
+2.假設資料來源無誤 --- 模擬使用一個數組
+3.取得輸入的資料 --- this.value
+4.比對資料後把找到的資料放到暫存的數組裡 --- tempArr & keywords[i].indexOf
+
+然後，前半部搞定
+
+
+	</textarea>
+    <script>
+        var keywords = ["第一個", "第二個", "第三個", "第四個", "第五個", "第一個人", "很高興", "很開心", "很快樂", "很高興的"]
+        my$("txt").onkeyup = function() {
+            var text = this.value;
+            var tempArr = [];
+            for (var i = 0; i < keywords.length; i++) {
+                if (keywords[i].indexOf(text) != -1) {
+                    tempArr.push(keywords[i]);
+                }
+            }
+            console.log(tempArr);
+        };
+    </script>
+</body>
+
+</html>

@@ -42,11 +42,29 @@
     <br>
     <textarea id="ta " name="ta " rows="30 " cols="150 ">
 模擬google的搜索列！這個很重要，早就想要學了
-
+邏輯：
+先有個資料串過來，轉成arr因為要使用裡面的indexOf()
+indexOf的使用方式
+arr.indexOf(比對的字串 例如 this.value 當 keyup的時候) == 0 index=0 這個是第一個字
+但是我要找只要字串中有的話，就判斷，回傳不要是-1就好了，因為-1的話是代表找不到
+最後，先做一個暫存檔，把找到的該arr[i]推到暫存檔然後顯示出來
+暫存檔 tempArr=[]; 當宣告陣列的時候，下面的方法自然可以用
+tempArr.push(arr[i]);  --- 搞定
 
 
 	</textarea>
     <script>
+        var keywords = ["第一個", "第二個", "第三個", "第四個", "第五個", "第一個人", "很高興", "很開心", "很快樂", "很高興的"]
+        my$("txt").onkeyup = function() {
+            var text = this.value;
+            var tempArr = [];
+            for (var i = 0; i < keywords.length; i++) {
+                if (keywords[i].indexOf(text) != -1) {
+                    tempArr.push(keywords[i]);
+                }
+            }
+            console.log(tempArr);
+        };
     </script>
 </body>
 

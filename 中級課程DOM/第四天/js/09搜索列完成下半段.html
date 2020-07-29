@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        #box {
+            width: 450px;
+            margin: 200px auto;
+        }
+        
+        #txt {
+            width: 350px;
+        }
+        
+        #pop {
+            width: 350px;
+            border: 1px solid red;
+        }
+        
+        #pop ul {
+            margin: 10px;
+            padding: 0px;
+            width: 200px;
+            list-style-type: none;
+        }
+        
+        #pop ul li {}
+    </style>
+</head>
+
+
+<body>
+    <div id="box">
+        <input type="text" id="txt" value="">
+        <input type="button" value="搜索" id="btn">
+
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+模擬google的搜索列！這個很重要，早就想要學了
+邏輯：
+1.先增加搜索列的事件處理 --- onkeyup
+2.假設資料來源無誤 --- 模擬使用一個數組
+3.取得輸入的資料 --- this.value
+4.比對資料後把找到的資料放到暫存的數組裡 --- tempArr & keywords[i].indexOf
+5.創建一個div出來，然後放到上一層的div -- bix 裡面
+6.要判斷什麼時候需要創建這個div --- 當tempArr裡面有資料
+
+if (my$("dv")) {
+	my$("box").removeCdild(my$("dv"));
+}
+
+然後，前半部搞定
+
+
+	</textarea>
+    <script>
+        var keywords = ["第一個", "第二個", "第三個", "第四個", "第五個", "第一個人", "很高興", "很開心", "很快樂", "很高興的", "aaa", "aab", "aac", "bcc"]
+        my$("txt").onkeyup = function() {
+            var text = this.value;
+            var tempArr = [];
+
+            //每次鍵盤up都判斷頁面中有沒有這個div，有，就先幹掉
+            if (my$("dv")) {
+                my$("box").removeChild(my$("dv"));
+            }
+            for (var i = 0; i < keywords.length; i++) {
+                if (keywords[i].indexOf(text) != -1) {
+                    tempArr.push(keywords[i]);
+                }
+            }
+            console.log(tempArr);
+            //判斷文本框內容 0  臨時數組也是 0 刪除這個 div
+            if (tempArr.length == 0 || this.value.length == 0) {
+                if (my$("dv")) {
+                    my$("box").removeChild(my$("dv"));
+                }
+                return;
+            }
+
+            var dvObj = document.createElement("div");
+            my$("box").appendChild(dvObj);
+            dvObj.id = "dv";
+            dvObj.style.width = "350px";
+            dvObj.style.border = "1px solid red"
+                //dvObj.style.height = "100px";
+
+            for (var i = 0; i < tempArr.length; i++) {
+                var pObj = document.createElement("p");
+                dvObj.appendChild(pObj);
+                setinnerText(pObj, tempArr[i]);
+                pObj.style.margin = "2px";
+                pObj.style.cursor = "pointer";
+                //下面可以改成命名函數，讓他節省空間
+                pObj.onmouseover = function() {
+                    this.style.backgroundColor = "yellow";
+                };
+                pObj.onmouseout = function() {
+                    this.style.backgroundColor = "";
+                };
+                pObj.onclick = function() {
+                    console.log(this.innerText);
+                    my$("txt").value = this.innerText;
+                    my$("box").removeChild(my$("dv"));
+                };
+            }
+        };
+    </script>
+</body>
+
+</html>
