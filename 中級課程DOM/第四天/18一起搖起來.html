@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        img {
+            width: 400px;
+        }
+        
+        div {
+            position: absolute;
+            margin-top: 30px;
+        }
+        
+        textarea {
+            margin-top: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="搖起來" id="btn1">
+    <input type="button" value="停止" id="btn2">
+    <div id="dv">
+        <img src="image/a-640.jpg" alt="">
+        <img src="image/b-640.jpg" alt="">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路：
+首先兩個圖片檔要在同一個div裡面，這樣就只要震動div裡面的圖片就會跟者動
+兩個按鈕 + 兩張圖片 + 一個div 搞定
+要讓div到處跑就要脫離文檔流
+使用亂數  Math.random()*100+1; 取得1-100的數值 並且賦予 x y
+把div.style.left 跟 div.style.top 分別賦予亂數值
+裝到計時器裡面後，即可開始搖動
+記得要把timeId設定為全域變數
+另外要在執行setInterval執行前，先clearInterval防止重複執行喔
+
+	</textarea>
+    <script>
+        var timeId;
+        my$("btn1").onclick = function() {
+            clearInterval(timeId);
+            timeId = setInterval(function() {
+                var x = Math.random() * 100 + 1;
+                var y = Math.random() * 100 + 1;
+                my$("dv").style.left = x + "px";
+                my$("dv").style.top = y + "px";
+            }, 100)
+        };
+
+        my$("btn2").onclick = function() {
+            clearInterval(timeId);
+        };
+    </script>
+</body>
+
+</html>
