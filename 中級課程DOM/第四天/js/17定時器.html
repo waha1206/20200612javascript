@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <div id="box">
+        <input type="button" value="停止定時器" id="btn">
+
+
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+BOM中有兩個定時器 --- setInterval(參數1,參數2);
+setInterval(function(){
+
+},1000);
+參數1：函數
+參數2：時間
+定時器有一個返回值是 num 類型的數字
+可以設定他如
+var timerId = setInterval( ...)
+	</textarea>
+    <script>
+        var timerId = setInterval(function() {
+            console.log(timerId);
+        }, 1000);
+        my$("btn").onclick = function() {
+            clearInterval(timerId);
+        };
+    </script>
+</body>
+
+</html>

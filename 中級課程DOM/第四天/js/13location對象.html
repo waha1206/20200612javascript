@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+
+<body>
+    <div id="box">
+        <input type="button" value="跳轉的方法與屬性" id="btn">
+
+
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+//地址欄上 # 及後面的內容，也被稱為錨定器，例如他會跳轉到 元素屬性 id = #字號後面同樣名稱的位置
+console.log(window.location.hash + "=====>" + "地址欄上 # 及後面的內容");
+//主機名及端口號
+console.log(window.location.host + "=====>" + "主機名及端口號");
+//主機名
+console.log(window.location.hostname + "=====>" + "主機名");
+//文件的路徑 --- 相對路徑
+console.log(window.location.pathname + "=====>" + "文件的路徑 --- 相對路徑");
+//端口號
+console.log(window.location.port + "=====>" + "端口號");
+//通訊協定
+console.log(window.location.protocol + "=====>" + "通訊協定");
+//?及後面的搜索內容
+console.log(window.location.search + "=====>" + "?及後面的搜索內容");
+
+一定要記住的是屬性
+window.location,href = "網址"; 這個用很多
+
+onload = function() {
+    document.getElementById("btn").onclick = function() {
+        //跳轉方式，有歷史紀錄所以可以返回上一頁，使用屬性
+        window.location.href = "http://google.com";
+        //使用方法跳轉，一樣有歷史紀錄
+        window.location.assign("http://google.com");
+        //單純刷新，沒有上一頁。就是單純刷新
+        window.location.reload();
+        //重新加載---因為沒有歷史資料，所以瀏覽器按鈕沒有上一頁的問題
+        window.location.replace("http://google.com");
+    };
+};
+
+	</textarea>
+    <script>
+        //地址欄上 # 及後面的內容，也被稱為錨定器，例如他會跳轉到 元素屬性 id = #字號後面同樣名稱的位置
+        console.log(window.location.hash + "=====>" + "地址欄上 # 及後面的內容");
+        //主機名及端口號
+        console.log(window.location.host + "=====>" + "主機名及端口號");
+        //主機名
+        console.log(window.location.hostname + "=====>" + "主機名");
+        //文件的路徑 --- 相對路徑
+        console.log(window.location.pathname + "=====>" + "文件的路徑 --- 相對路徑");
+        //端口號
+        console.log(window.location.port + "=====>" + "端口號");
+        //通訊協定
+        console.log(window.location.protocol + "=====>" + "通訊協定");
+        //?及後面的搜索內容
+        console.log(window.location.search + "=====>" + "?及後面的搜索內容");
+        //取得使用者的瀏覽器版本
+        console.log(window.navigator.userAgent);
+
+        onload = function() {
+            document.getElementById("btn").onclick = function() {
+                //跳轉方式，有歷史紀錄所以可以返回上一頁，使用屬性
+                window.location.href = "http://google.com";
+                //使用方法跳轉，一樣有歷史紀錄
+                window.location.assign("http://google.com");
+                //單純刷新，沒有上一頁。就是單純刷新
+                window.location.reload();
+                //重新加載---因為沒有歷史資料，所以瀏覽器按鈕沒有上一頁的問題
+                window.location.replace("http://google.com");
+            };
+        };
+    </script>
+</body>
+
+</html>
