@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid yellow;
+            width: 600px;
+            height: 600px;
+            background-color: black;
+        }
+        
+        span {
+            font-size: 30px;
+            position: absolute;
+            color: yellow;
+        }
+        
+        textarea {
+            position: absolute;
+            left: 750px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="亮起來" id="btn">
+    <div id="dv">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與使用到的技術：
+星星脫離文檔流 span position: absolute; 子絕父相
+創建元素三種挑一種，這邊使用的是 my$("dv").innerHTML = "<apsn>★</apsn>"
+亂數給 x y 數值，Math.random()*600;
+獲取div下面的span元素 my$("dv").firstChild;
+賦予 span 新的座標值 spanObj.style.left = x + "px";
+使用定時器 setInterval(function(){}, 10)
+大概就這樣，沒什麼困難的地方
+
+
+	</textarea>
+    <script>
+        my$("btn").onclick = function() {
+            my$("dv").innerHTML = "<span>★</span>";
+            var spanObj = my$("dv").firstChild;
+            var x;
+            var y;
+            setInterval(function() {
+                x = Math.random() * 600;
+                y = Math.random() * 600;
+                spanObj.style.left = x + "px";
+                spanObj.style.top = y + "px";
+            }, 10)
+        };
+    </script>
+</body>
+
+</html>

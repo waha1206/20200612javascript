@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        textarea {
+            position: absolute;
+            left: 750px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../../../../home/02-JavaScript-WEB-API-第4天/04天課程/meimei/00_00.jpg" alt="" id="ig">
+    <br>
+
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與邏輯：
+首先要拿到日期
+var dt = new Date();
+hour =  dt.getHours();
+second = dt.getSeconds();
+再來檔案名稱要用 hour 跟 second 結合成字串
+取得 img 的物件後
+更換 img 下面的 scr --- 圖片路徑！
+另外～重整頁面後，不會馬上有圖案的處理方式為，把時間函數包裹的內容獨立出來，然後網頁一開的時候先讀取一次
+setInterval 這個函數會等網頁加載玩才開始執行，所以，我們要再往頁加載完之前先執行一次
+實際上，我電腦太新了，加載太快，導致這咚咚沒用途，不過我想用再老舊一點的電腦上面，應該就很明顯 www
+
+	</textarea>
+    <script>
+        function f1() {
+            var dt = new Date();
+            var hour = dt.getHours();
+            var second = dt.getSeconds();
+            hour = hour >= 10 ? hour : "0" + hour;
+            second = second >= 10 ? second : "0" + second;
+            console.log(hour + "==========" + second);
+            my$("ig").src = "../../../../home/02-JavaScript-WEB-API-第4天/04天課程/meimei/" + hour + "_" + second + ".jpg";
+        }
+        f1();
+        setInterval(f1, 1000);
+    </script>
+</body>
+
+</html>
