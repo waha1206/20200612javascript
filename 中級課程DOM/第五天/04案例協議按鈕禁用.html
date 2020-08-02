@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="協議按鈕禁用(5)" disabled="disabled" id="btn">
+    <div id="dv">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與使用到的技術：
+setInterval 使用完畢要 clearInterval
+可點擊與不可點擊
+disable = "disable" --- 不可點擊
+disable = false --- 可點擊
+
+	</textarea>
+    <script>
+        var i = 5;
+
+        var timeId = setInterval(function() {
+            i--;
+            my$("btn").value = "協議按鈕禁用(" + i + ")";
+            if (i <= 0) {
+                clearInterval(timeId);
+                my$("btn").disabled = false;
+                my$("btn").value = "請仔細閱讀協議";
+            }
+
+        }, 1000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+            overflow: auto;
+        }
+        
+        input {
+            position: absolute;
+            left: 330px;
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv">這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容這個是內容</div>
+    </div>
+    <input type="button" id="btn" value="按我按我">
+    <script>
+        my$("btn").onclick = function() {
+            console.log(my$("dv").scrollTop);
+        };
+        my$("dv").onscroll = function() {
+            console.log(my$("dv").scrollTop);
+            if (my$("dv").scrollTop > 250) {
+                alert("到底了啦！")
+            }
+        };
+    </script>
+</body>
+
+</html>

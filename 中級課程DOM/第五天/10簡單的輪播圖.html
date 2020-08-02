@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        ul {
+            list-style: none
+        }
+        
+        img {
+            vertical-align: top
+        }
+        
+        .box {
+            width: 730px;
+            height: 454px;
+            margin: 100px auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .inner {
+            width: 730px;
+            height: 454px;
+            background-color: pink;
+            /*overflow: hidden;*/
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .inner ul {
+            width: 1000%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .inner li {
+            float: left;
+        }
+        
+        .square {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        
+        .square span {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-color: #fff;
+            text-align: center;
+            line-height: 16px;
+            cursor: pointer;
+        }
+        
+        .square span.current {
+            background-color: orangered;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="inner">
+            <!--相框-->
+            <ul>
+                <li>
+                    <a href="#"><img src="image/1.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="image/2.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="image/3.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="image/4.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="image/5.jpg" alt="" /></a>
+                </li>
+                <li>
+                    <a href="#"><img src="image/6.jpg" alt="" /></a>
+                </li>
+            </ul>
+            <div class="square">
+                <span class="current">1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        //獲取最外面的元素
+        var box = my$("box");
+        //獲取相框
+        var inner = box.children[0];
+        //獲取相框的寬度
+        var imgWidth = inner.offsetWidth;
+        //獲取ul (移動的時候，是一棟ul的位置)
+        var ulObj = inner.children[0];
+        //獲取 span
+        var spanObjs = inner.children[1].children;
+        console.log(imgWidth);
+        console.log(spanObjs);
+
+        for (var i = 0; i < spanObjs.length; i++) {
+            spanObjs[i].setAttribute("index", i);
+            spanObjs[i].onmouseover = function() {
+                for (var j = 0; j < spanObjs.length; j++) {
+                    spanObjs[j].removeAttribute("class");
+                }
+                this.className = "current";
+                var index = this.getAttribute("index");
+                console.log(index);
+                animate(ulObj, -index * imgWidth);
+            };
+        }
+
+        function animate(element, target) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                //先取得 物件的 offset
+                var offset = element.offsetLeft;
+                //先設定移動的距離
+                var step = 10;
+                //到底要前進還是後退呢？小於前進，大於後退
+                step = offset < target ? step : -step;
+                offset += step;
+                //然後前進吧，但是要判斷有沒有走到
+                if (Math.abs(target - offset) > Math.abs(step)) {
+                    element.style.left = offset + "px";
+                } else {
+                    element.style.left = target + "px";
+                }
+            }, 10);
+        }
+    </script>
+</body>
+
+</html>

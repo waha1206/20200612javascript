@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid yellow;
+            width: 600px;
+            height: 600px;
+            background-color: black;
+        }
+        
+        textarea {
+            position: absolute;
+            left: 750px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="點我逐漸變暗" id="btn">
+    <div id="dv">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與使用到的技術：
+opicaty --- 顏色的透明度 滿分=1  0.1 逐步變淡
+
+	</textarea>
+    <script>
+        var opacity = 10;
+        my$("btn").onclick = function() {
+            var timerId = setInterval(function() {
+                opacity--;
+                console.log(opacity);
+                if (opacity <= 0) {
+                    my$("dv").style.opacity = 1;
+                    opacity = 10;
+                    clearInterval(timerId);
+                    rturn;
+                }
+                my$("dv").style.opacity = opacity / 10;
+            }, 200)
+        }
+    </script>
+</body>
+
+</html>

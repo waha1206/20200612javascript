@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid yellow;
+            width: 300px;
+            height: 150px;
+            background-color: black;
+            border-radius: 50%;
+        }
+        
+        textarea {
+            position: absolute;
+            left: 750px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="點我逐漸變寬" id="btn">
+    <div id="dv">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與使用到的技術：
+需要一個定時器
+需要一個點擊按鈕與事件觸發後的處理函數
+要先把 div 的 width 先裝到變數裡面 var width = 200;
+timerId 要設定成全域變數
+在觸發 定時器 setInterval 之前，要先做 clearInterval(timeId) 防止重複觸發
+
+	</textarea>
+    <script>
+        var width = 300;
+        var timeId = "";
+
+        my$("btn").onclick = function() {
+            clearInterval(timeId);
+            timeId = setInterval(function() {
+                width++;
+                if (width > 500) {
+                    width = 300;
+                    clearInterval(timeId);
+                    return;
+                }
+                my$("dv").style.width = width + "px";
+            }, 10)
+        }
+    </script>
+</body>
+
+</html>

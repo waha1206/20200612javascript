@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid yellow;
+            width: 150px;
+            height: 150px;
+            background-color: black;
+            border-radius: 50%;
+        }
+        
+        textarea {
+            position: absolute;
+            left: 750px;
+            top: 60px;
+        }
+        
+        span {
+            display: block;
+            color: #fff;
+            text-align: center;
+            font-size: 50px;
+            line-height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="移動到200px" id="btn1">
+    <input type="button" value="移動到400px" id="btn2">
+    <div id="dv">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與邏輯：
+兩個btn 一個 div
+初始化 div
+先保留 div x座標 (因為要橫向移動)
+btn1的點擊事件 --- x座標 +200
+btn2的點擊事件 --- x座標 +400
+
+	</textarea>
+    <script>
+        function animate(element, target) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                //先取得 物件的 offset
+                var offset = element.offsetLeft;
+                //先設定移動的距離
+                var step = 10;
+                //到底要前進還是後退呢？小於前進，大於後退
+                step = offset < target ? step : -step;
+                offset += step;
+                //然後前進吧，但是要判斷有沒有走到
+                if (Math.abs(target - offset) > Math.abs(step)) {
+                    element.style.left = offset + "px";
+                } else {
+                    element.style.left = target + "px";
+                }
+            }, 20);
+        }
+
+        my$("btn1").onclick = function() {
+            animate(my$("dv"), 200);
+        };
+        my$("btn2").onclick = function() {
+            animate(my$("dv"), 400);
+        };
+    </script>
+</body>
+
+</html>

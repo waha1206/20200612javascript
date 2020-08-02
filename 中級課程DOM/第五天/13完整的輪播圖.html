@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            border: 0;
+        }
+        
+        .all {
+            width: 500px;
+            height: 200px;
+            padding: 7px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            position: relative;
+        }
+        
+        .screen {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .screen li {
+            width: 500px;
+            height: 200px;
+            overflow: hidden;
+            float: left;
+        }
+        
+        .screen ul {
+            position: absolute;
+            left: 0;
+            top: 0px;
+            width: 3000px;
+        }
+        
+        .all ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            line-height: 20px;
+            text-align: center;
+        }
+        
+        .all ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        
+        .all ol li.current {
+            background: #DB192A;
+        }
+        
+        #arr {
+            display: none;
+        }
+        
+        #arr span {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -20px;
+            background: #000;
+            cursor: pointer;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-family: '黑体';
+            font-size: 30px;
+            color: #fff;
+            opacity: 0.3;
+            border: 1px solid #fff;
+        }
+        
+        #arr #right {
+            right: 5px;
+            left: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="all" id='box'>
+        <div class="screen">
+            <!--相框-->
+            <ul>
+                <li><img src="image/y-1.jpg" width="500" height="200" /></li>
+                <li><img src="image/y-2.jpg" width="500" height="200" /></li>
+                <li><img src="image/y-3.jpg" width="500" height="200" /></li>
+                <li><img src="image/y-4.jpg" width="500" height="200" /></li>
+                <li><img src="image/y-5.jpg" width="500" height="200" /></li>
+            </ul>
+            <ol>
+            </ol>
+        </div>
+        <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+    </div>
+    <script>
+        //獲取最外面的div --- 總是要有一個開始
+        var box = my$("box");
+        //獲取 screen 相框
+        var screen = box.children[0];
+        //獲取相框寬度
+        var imgWidth = screen.offsetWidth;
+        console.log(imgWidth);
+        //獲取 ulObj --- 移動圖片的時候需要
+        var ulObj = screen.children[0];
+        //獲取 ul 下面的所有 li 元素 --- 這邊要先保存起來，因為後面會clon一個 img 增加一個做無縫輪播
+        var list = ulObj.children;
+        console.log(list);
+        //取得 ol 這個容器，因為要把 li 元素放進去，放多少取決於多少圖片
+        var olObj = screen.children[1];
+        console.log(olObj);
+        var arrObj = my$("arr");
+        //現在相框裡面的圖片 index
+        var pic = 0;
+        //圖片移動的速度
+        var speed = 4;
+        //開場就讓動畫跑起來 --- 使用 rught click事件 --- 命名函數 clickHandle
+        var timeId = setInterval(clickHandle, 2000);
+
+
+        for (var i = 0; i < list.length; i++) {
+            //創建元素，等等要塞到ol裡面
+            var liObj = document.createElement("li");
+            olObj.append(liObj);
+            liObj.innerHTML = i + 1;
+            //在每個 ol 中的 li 標籤上添加一個自定義屬性，並儲存索引值 --- index
+            liObj.setAttribute("index", i);
+            //為每個 li 添加事件
+            liObj.onmouseover = function() {
+                //先幹掉所有的 li class --- 把底色拿掉
+                for (var j = 0; j < olObj.children.length; j++) {
+                    olObj.children[j].removeAttribute("class");
+                }
+                //設置鼠標進來的顏色
+                this.setAttribute("class", "current");
+                //拿到當前的索引值
+                pic = this.getAttribute("index");
+                //移動ul 使用 動畫函數 --- 物件、位置、移動速度 (毫秒)
+                animate(ulObj, -pic * imgWidth, speed);
+            };
+        }
+        //讓第一個按紐底色變
+        olObj.children[0].className = "current";
+        //複製ol裡面第一個元素(圖片)，到最後一個，為了做無縫輪播
+        ulObj.appendChild(ulObj.children[0].cloneNode(true));
+        box.onmouseover = function() {
+            arrObj.style.display = "block";
+            clearInterval(timeId);
+        };
+        box.onmouseout = function() {
+            arrObj.style.display = "none";
+            timeId = setInterval(clickHandle, 2000);
+        };
+        my$("right").onclick = clickHandle;
+
+        function clickHandle() {
+            if (pic == list.length - 1) {
+                ulObj.style.left = 0;
+                pic = 0;
+            }
+            pic++;
+            console.log(pic);
+            animate(ulObj, -pic * imgWidth, speed);
+            //同步下面的 li 小按鈕顏色
+            if (pic == list.length - 1) {
+                olObj.children[olObj.children.length - 1].className = "";
+                olObj.children[0].className = "current";
+            } else {
+                for (var i = 0; i < olObj.children.length; i++) {
+                    olObj.children[i].className = "";
+                }
+                olObj.children[pic].className = "current";
+            }
+        };
+        my$("left").onclick = function() {
+            console.log(pic);
+            if (pic == 0) {
+                pic = 5;
+                ulObj.style.left = -pic * imgWidth + "px";
+            }
+            pic--;
+            animate(ulObj, -pic * imgWidth, speed);
+            for (var i = 0; i < olObj.children.length; i++) {
+                olObj.children[i].removeAttribute("class");
+            }
+            console.log(pic);
+            olObj.children[pic].className = "current";
+        };
+    </script>
+</body>
+
+</html>
+
+</html>

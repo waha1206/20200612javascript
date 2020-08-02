@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv"></div>
+
+    <script>
+        var ck = false;
+        my$("dv").onmousedown = function(e) {
+            ck = ck ? false : true;
+        };
+        document.onmousemove = function(e) {
+            if (ck) {
+                my$("dv").style.left = e.clientX - 100 + "px";
+                my$("dv").style.top = e.clientY - 100 + "px";
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            position: relative;
+            margin-top: 30px;
+            border: 2px solid yellow;
+            width: 150px;
+            height: 150px;
+            background-color: black;
+            border-radius: 50%;
+        }
+        
+        textarea {
+            position: absolute;
+            left: 750px;
+            top: 60px;
+        }
+        
+        span {
+            display: block;
+            color: #fff;
+            text-align: center;
+            font-size: 50px;
+            line-height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="移動到200px" id="btn1">
+    <input type="button" value="移動到400px" id="btn2">
+    <div id="dv">
+    </div>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+思路與邏輯：
+兩個btn 一個 div
+初始化 div
+先保留 div x座標 (因為要橫向移動)
+btn1的點擊事件 --- x座標 +200
+btn2的點擊事件 --- x座標 +400
+
+	</textarea>
+    <script>
+        var spanObj = document.createElement("span");
+        var x = 0;
+        var btn1X = 200;
+        var btn2X = 400;
+        var timeId = "";
+        my$("dv").appendChild(spanObj);
+        spanObj.innerText = 0 + "px";
+        my$("btn1").onclick = function() {
+            clearInterval(timeId);
+            timeId = setInterval(function() {
+                if (x > 200) {
+                    x--;
+                } else if (x < 200) {
+                    x++;
+                } else {
+                    x = btn1X;
+                    clearInterval(timeId);
+                    return;
+                }
+                my$("dv").style.left = x + "px";
+                spanObj.innerText = x + "px";
+            }, 10)
+        };
+        my$("btn2").onclick = function() {
+            clearInterval(timeId);
+            timeId = setInterval(function() {
+                x++;
+                if (x > btn2X) {
+                    x = btn2X;
+                    clearInterval(timeId);
+                    return;
+                }
+                my$("dv").style.left = x + "px";
+                spanObj.innerText = x + "px";
+            }, 10)
+        };
+    </script>
+</body>
+
+</html>
