@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        input {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        
+        div {
+            height: 200px;
+            width: 300px;
+            background-color: red;
+            margin-top: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="移動到400px" id="btn1">
+    <input type="button" value="移動到800px" id="btn2">
+    <div id="dv"></div>
+    <script>
+        my$("btn1").onclick = function() {
+            animateSlow(my$("dv"), 400);
+        };
+        my$("btn2").onclick = function() {
+            animateSlow(my$("dv"), 800);
+        };
+
+        function animate(element, target) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                //獲取目前的位置
+                var current = element.offsetLeft;
+                //移動的步數
+                var step = 10;
+                //要去的地方 target 比目標位置(current)大的話，移動就是正數
+                step = target > current ? step : -step;
+                console.log(step);
+                console.log(current);
+                if (Math.abs(target - current) > Math.abs(step)) {
+                    current += step;
+                    element.style.left = current + "px";
+                } else {
+                    element.style.left = target + "px";
+                    console.log(element.offsetLeft);
+                    clearInterval(element.timeId);
+                }
+            }, 20)
+        }
+
+        function animateSlow(element, target) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                var current = element.offsetLeft;
+                var step = (target - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                console.log(step);
+                current += step;
+                element.style.left = current + "px";
+                if (current == target) {
+                    clearInterval(element.timeId);
+                }
+                //測試代碼
+                //console.log("目標位置：" + target + "當前位置：" + element.offsetLeft + " 每次移動步數：" + step);
+
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>

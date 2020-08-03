@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        img {
+            vertical-align: top;
+        }
+        
+        .main {
+            margin: 0 auto;
+            width: 1000px;
+            margin-top: 10px;
+        }
+        
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top" id="topPart">
+        <img src="images/top.png" alt="" />
+    </div>
+    <div class="nav" id="navBar">
+        <img src="images/nav.png" alt="" />
+    </div>
+    <div class="main" id="mainPart">
+        <img src="images/main.png" alt="" />
+    </div>
+    <script>
+        function getScroll() {
+            return {
+                top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop,
+                left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft
+            }
+        }
+        window.onscroll = function() {
+            //如果捲出去的像速超過了第一個div的高度 --- 這邊要使用offsetHeight
+            if (getScroll().top > my$("topPart").offsetHeight) {
+                //直接增加class值 --- fixed 脫離文檔流，另外給他固定螢幕上位置
+                my$("navBar").className = "nav fixed";
+                //最下面內容的div區塊，因為上面的區塊脫離文檔流，所以就會往上塌陷
+                //所以要補一個margin-top的空間，此空間要等於第二個div的高度 --- navBar.offsetHeight
+                my$("mainPart").style.marginTop = my$("navBar").offsetHeight + "px";
+            } else {
+                //就 ... 恢復原狀而已
+                my$("navBar").className = "nav";
+                //補回她原本的空隙 10 px
+                my$("mainPart").style.marginTop = "10px";
+            }
+            console.log(getScroll().top);
+        };
+    </script>
+</body>
+
+</html>
