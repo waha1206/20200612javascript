@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        input {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        
+        div {
+            height: 200px;
+            width: 300px;
+            background-color: red;
+            margin-top: 100px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="移動到400px" id="btn1">
+    <input type="button" value="移動到800px" id="btn2">
+    <div id="dv"></div>
+    <script>
+        var json = {
+            "left": 400,
+            "width": 400
+        }
+        my$("btn1").onclick = function() {
+            animateSlow(my$("dv"), "height", 400);
+        };
+        my$("btn2").onclick = function() {
+            animateSlow(my$("dv"), 800);
+        };
+
+
+        function getStyle(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[att];
+        }
+
+        function animateSlow(element, attr, target) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                var current = parseInt(getStyle(element, attr));
+                console.log(current);
+                var step = (target - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                console.log(step);
+                current += step;
+                element.style[attr] = current + "px";
+                if (current == target) {
+                    clearInterval(element.timeId);
+                }
+                //測試代碼
+                console.log("目標位置：" + target + "當前位置：" + element.offsetLeft + " 每次移動步數：" + step);
+
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>

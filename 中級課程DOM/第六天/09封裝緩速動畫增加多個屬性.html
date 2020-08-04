@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        input {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        
+        #dv {
+            height: 200px;
+            width: 300px;
+            background-color: red;
+            margin-top: 100px;
+            position: absolute;
+            opacity: 0.2;
+        }
+        
+        #dv2 {
+            height: 50px;
+            width: 50px;
+            background-color: blue;
+            position: absolute;
+            top: 120px;
+            left: 10px;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="移動到400px" id="btn1">
+    <input type="button" value="移動到800px" id="btn2">
+    <div id="dv"></div>
+    <div id="dv2"></div>
+    <script>
+        var json = {
+            "left": 400,
+            "width": 600,
+            "height": 400
+        };
+        var json2 = {
+            "left": 40,
+            "width": 60,
+            "height": 40,
+            "zIndex": 1000,
+            "opacity": 1
+        };
+        my$("btn1").onclick = function() {
+            animateSlow(my$("dv"), json, function() {
+                animateSlow(my$("dv"), json2);
+            });
+            console.log(getStyle(my$("dv"), "opacity"));
+        };
+        my$("btn2").onclick = function() {
+            animateSlow(my$("dv"), 800);
+        };
+
+
+        function getStyle(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[att];
+        }
+
+        function animateSlow(element, json, fn) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                var flag = true;
+                for (attr in json) {
+                    console.log(attr);
+                    if (attr == "zIndex") {
+                        console.log(attr);
+                        element.style[attr] = json[attr];
+                    } else if (attr == "opacity") {
+                        var current = getStyle(element, attr) * 100;
+                        var target = json[attr] * 100;
+                        var step = (target - current) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        current += step;
+                        element.style[attr] = current / 100;
+                    } else {
+                        var current = parseInt(getStyle(element, attr));
+                        var target = json[attr];
+                        var step = (target - current) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        current += step;
+                        element.style[attr] = current + "px";
+                    }
+                    //是否到達目標
+                    if (current != target) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    console.log(element.timeId);
+                    clearInterval(element.timeId);
+                    if (fn) {
+                        fn();
+                    }
+                }
+                //測試代碼
+                //console.log("目標位置：" + target + "當前位置：" + element.offsetLeft + " 每次移動步數：" + step);
+
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>

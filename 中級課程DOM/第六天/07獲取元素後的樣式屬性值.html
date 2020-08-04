@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 200px;
+            height: 100px;
+            background-color: purple;
+            left: 100px;
+            margin-top: 100px;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="顯示效果" id="btn">
+    <div id="dv"></div>
+
+    <script>
+        my$("btn").onclick = function() {
+            console.log(getStyle(my$("dv"), "margin-top"));
+        };
+
+        function getStyle(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[att];
+        }
+    </script>
+</body>
+
+</html>
