@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        ul {
+            list-style: none;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        div {
+            width: 1150px;
+            height: 400px;
+            margin: 50px auto;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        
+        div li {
+            width: 240px;
+            height: 400px;
+            float: left;
+        }
+        
+        div ul {
+            width: 1300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        function getStyle(element, attr) {
+            return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[att] || 0;
+        }
+
+        function animate(element, json, fn) {
+            clearInterval(element.timeId);
+            element.timeId = setInterval(function() {
+                var flag = true;
+                for (attr in json) {
+                    if (attr == "zIndex") {
+                        element.style[attr] = json[attr];
+                    } else if (attr == "opacity") {
+                        //透明度的話要放大100倍
+                        var current = getStyle(element, attr) * 100;
+                        var target = json[attr] * 100;
+                        var step = (target - current) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        current += step;
+                        element.style[attr] = current / 100;
+                    } else {
+                        //透明度與zIndex以外的屬性跑這邊
+                        var target = json[attr];
+                        var current = parseInt(getStyle(element, attr));
+                        //往正數前進，還是負數
+                        var step = (target - current) / 10;
+                        step = step > 0 ? Math.abs(step) : Math.floor(step);
+                        current += step;
+                        element.style[attr] = current + "px";
+                    }
+                    if (target != current) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    clearInterval(element.timeId);
+                    if (fn) {
+                        fn();
+                    }
+                }
+            }, 20);
+        }
+
+        function mouseoverHandle() {
+            for (var j = 0; j < list.length; j++) {
+                animate(list[j], {
+                    "width": 100
+                })
+                animate(this, {
+                    "width": 800
+                })
+            }
+        }
+
+        function mouseoutHandle() {
+            for (var j = 0; j < list.length; j++) {
+                animate(list[j], {
+                    "width": 250
+                })
+            }
+        }
+
+        var list = my$("box").getElementsByTagName("li");
+        console.log(list);
+        for (var i = 0; i < list.length; i++) {
+            list[i].style.backgroundImage = "url(images/" + (i + 1) + ".jpg)";
+            //鼠標進入
+            list[i].onmouseover = mouseoverHandle;
+            //鼠標離開
+            list[i].onmouseout = mouseoutHandle;
+        }
+    </script>
+</body>
+
+</html>
