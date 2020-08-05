@@ -149,3 +149,45 @@ function animate(element, target, speed) {
         }
     }, speed);
 }
+
+function animate_leo(element, json, fn) {
+    clearInterval(element.timeId);
+    element.timeId = setInterval(function() {
+        var flag = true;
+        for (attr in json) {
+            if (attr == "zIndex") {
+                element.style[attr] = json[attr];
+            } else if (attr == "opacity") {
+                //透明度的話要放大100倍
+                var current = getStyle(element, attr) * 100;
+                var target = json[attr] * 100;
+                var step = (target - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                current += step;
+                element.style[attr] = current / 100;
+            } else {
+                //透明度與zIndex以外的屬性跑這邊
+                var target = json[attr];
+                var current = parseInt(getStyle(element, attr));
+                //往正數前進，還是負數
+                var step = (target - current) / 10;
+                step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                current += step;
+                element.style[attr] = current + "px";
+            }
+            if (target != current) {
+                flag = false;
+            }
+        }
+        if (flag) {
+            clearInterval(element.timeId);
+            if (fn) {
+                fn();
+            }
+        }
+    }, 20);
+}
+
+function getStyle(element, attr) {
+    return window.getComputedStyle ? window.getComputedStyle(element, null)[attr] : element.currentStyle[att] || 0;
+}

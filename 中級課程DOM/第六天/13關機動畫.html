@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        .box {
+            width: 322px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            overflow: hidden;
+        }
+        
+        .topNav {
+            width: 322px;
+            position: fixed;
+            top: 0px;
+            overflow: hidden;
+            height: 2px;
+        }
+        
+        span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topNav" id="nav">
+        <img src="images/t.jpg" alt="">
+    </div>
+
+    <div class="box" id="box">
+        <span id="closeButton"></span>
+        <div class="hd" id="headPart">
+            <img src="images/t.jpg" alt="" />
+        </div>
+        <div class="bd" id="bottomPart">
+            <img src="images/b.jpg" alt="" />
+        </div>
+    </div>
+    <script>
+        my$("closeButton").onclick = function() {
+            animate_leo(my$("bottomPart"), {
+                "height": 0
+            }, function() {
+                animate_leo(my$("box"), {
+                    "width": 0
+                })
+            })
+        };
+
+        my$("nav").onmouseover = function() {
+            animate_leo(my$("nav"), {
+                "height": 244
+            });
+        };
+        my$("nav").onmouseout = function() {
+            animate_leo(my$("nav"), {
+                "height": 2
+            });
+        };
+    </script>
+</body>
+
+</html>

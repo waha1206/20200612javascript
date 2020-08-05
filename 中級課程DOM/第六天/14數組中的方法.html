@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        textarea {
+            position: absolute;
+            left: 60px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+取出的兩個方法：
+pop() --- 後面取出 --- 有傳回值數組長度
+shift() --- 前面取出 --- 有傳回值數組長度
+塞回的兩個方法：
+unshift(值) --- 前面塞回
+push(值) --- 後面塞回
+
+var arr = [10, 20, 30, 40, 50];
+// pop()從後面拿掉一個數，並且有 return 拿掉的值
+console.log(arr.pop());
+console.log(arr);
+// shift()從前面拿掉一個數，並且有 return 拿掉的值
+console.log(arr.shift());
+console.log(arr);
+// unshift() 從數組前面再塞進去一個值，並且有 return 數組裡面的 length
+console.log(arr.unshift(10));
+console.log(arr);
+//push()從後面塞回去一個值，並且有 return 數組裡面的 length
+console.log(arr.push(50));
+console.log(arr);
+
+	</textarea>
+    <script>
+        var arr = [10, 20, 30, 40, 50];
+        // pop()從後面拿掉一個數，並且有 return 拿掉的值
+        console.log(arr.pop());
+        console.log(arr);
+        // shift()從前面拿掉一個數，並且有 return 拿掉的值
+        console.log(arr.shift());
+        console.log(arr);
+        // unshift() 從數組前面再塞進去一個值，並且有 return 數組裡面的 length
+        console.log(arr.unshift(10));
+        console.log(arr);
+        //push()從後面塞回去一個值，並且有 return 數組裡面的 length
+        console.log(arr.push(50));
+        console.log(arr);
+    </script>
+</body>
+
+</html>

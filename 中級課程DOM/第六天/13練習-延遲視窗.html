@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            margin: 10px;
+            float: left;
+        }
+        
+        #div1 {
+            width: 150px;
+            height: 150px;
+            background-color: red;
+        }
+        
+        #div2 {
+            /*width: 300px;
+            height: 180px;*/
+            background-color: #ccc;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script>
+        var timeId;
+        var flag = true;
+
+        my$("div2").onmouseover = mouseoverHandle;
+        my$("div1").onmouseover = mouseoverHandle;
+
+        my$("div2").onmouseout = mouseoutHandle;
+        my$("div1").onmouseout = mouseoutHandle;
+
+        function mouseoutHandle() {
+            if (flag) {
+                flag = false;
+                timeId = setTimeout(function() {
+                    //my$("div2").style.display = "none";
+                    animate_leo(my$("div2"), {
+                        "width": 0,
+                        "height": 0
+                    }, function() {
+                        flag = true;
+                    });
+                }, 200);
+            }
+        }
+
+        function mouseoverHandle() {
+            clearTimeout(timeId);
+            if (flag) {}
+            flag = false;
+            animate_leo(my$("div2"), {
+                "width": 300,
+                "height": 180
+            }, function() {
+                flag = true;
+            });
+        }
+        //my$("div2").style.display = "block";
+    </script>
+</body>
+
+</html>
