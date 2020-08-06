@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        body {
+            height: 2000px;
+        }
+        
+        img {
+            position: absolute;
+            z-index: 1;
+        }
+        
+        textarea {
+            position: absolute;
+            left: 60px;
+            top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="images/ts.gif" alt="" id="im">
+    <textarea id="ta " name="ta " rows="30 " cols="150 ">
+圖片跟者鼠標飛，可以在任何的瀏覽器中實現此功能
+window.event和事件參數對象e的兼容
+clientX和clientY單獨的使用和兼容代碼
+scrollLeft和scrollTop的兼容代碼
+pageX,pageY和clientX+scrollLeft和clientY+scrollTop
+
+使用的封裝方式 --- 封裝在一個對象中
+	</textarea>
+    <script>
+        var evt = {
+            //windows.event和事件參數對象 e 的兼容
+            getEvent: function(evt) {
+                return window.event || evt;
+            },
+            //可視區域的橫坐標兼容代碼
+            getClientX: function(evt) {
+                return this.getEvent(evt).clientX;
+            },
+            //可視區域的縱坐標兼容代碼
+            getClientY: function(evt) {
+                return this.getEvent(evt).clientY;
+            },
+            //頁面向左捲曲出去的橫坐標 X
+            getScrollLeft: function() {
+                return window.pageXOffset || document.body.scrollLeft || document.documentElement.scrollLeft || 0;
+            },
+            //頁面向上捲曲出去的縱坐標 Y
+            getScrollTop: function() {
+                return window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop || 0;
+            },
+            //相對於頁面的橫坐標 (pageX 或者是 clientX + scrollLeft)
+            getPageX: function(evt) {
+                return this.getEvent(evt).pageX ? this.getEvent(evt).pageX : this.getEvent(evt).clientX + this.getScrollTop;
+            },
+            //相對於頁面的縱坐標 (pageY 或者是 clientY + scrollTop)
+            getPageY: function(evt) {
+                return this.getEvent(evt).pageY ? this.getEvent(evt).pageY : this.getEvent(evt).clientY + this.getScrollTop;
+            }
+        };
+
+        document.onmousemove = mousemoveHandle;
+
+        function mousemoveHandle(e) {
+            my$("im").style.left = evt.getPageX(e) + "px";
+            my$("im").style.top = evt.getPageY(e) + "px";
+        }
+    </script>
+</body>
+
+</html>
