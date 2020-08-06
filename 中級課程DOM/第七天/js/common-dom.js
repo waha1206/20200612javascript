@@ -1,3 +1,14 @@
+/*
+
+最後修改版本 2020.8.7
+修改人 Leo
+修改bug --
+addEventListener
+最後一行 =fn 改成 =fnName
+新增函數
+
+*/
+
 //用參數id傳回元素的對象
 
 /**
@@ -101,7 +112,7 @@ function addEventListener(element, fnName, type) {
     } else if (element.attachEvent) {
         element.attachEvent("on" + type, fnName);
     } else {
-        element["on" + type] = fn;
+        element["on" + type] = fnName;
     }
 }
 
