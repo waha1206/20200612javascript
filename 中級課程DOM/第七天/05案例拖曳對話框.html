@@ -191,6 +191,23 @@
             my$("login").style.display = "none";
             my$("bg").style.display = "none";
         };
+        my$("title").onmousedown = function(e) {
+            //margin-left: -250px;
+            //margin-top: 140px;
+            var x = e.clientX - my$("login").offsetLeft;
+            var y = e.clientY - my$("login").offsetTop;
+
+            document.onmousemove = function(e) {
+                console.log(my$("login").offsetTop);
+                if (my$("login").offsetTop > 20) {
+                    my$("login").style.left = e.clientX - x + 250 + "px";
+                    my$("login").style.top = e.clientY - y - 140 + "px";
+                }
+            };
+        };
+        document.onmouseup = function() {
+            document.onmousemove = null;
+        };
     </script>
 </body>
 
