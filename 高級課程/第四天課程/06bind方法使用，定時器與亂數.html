@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+</textarea>
+
+    <script>
+        function ShowRandow() {
+            //產生1-10之間的亂數
+            this.number = parseInt(Math.random() * 10 + 1);
+        }
+        ShowRandow.prototype.show1 = function() {
+            setInterval(this.show2.bind(this), 1000);
+        };
+        ShowRandow.prototype.show2 = function() {
+            console.log(this.number);
+            console.log(parseInt(Math.random() * 10 + 1));
+        };
+        var sr = new ShowRandow();
+        sr.show1();
+    </script>
+</body>
+
+</html>

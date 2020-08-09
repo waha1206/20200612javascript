@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        span {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv">
+        <span id="sp">1</span>
+    </div>
+    <br>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+        var spObj = my$("sp");
+        var temp = 0;
+
+        setInterval(function() {
+            temp++;
+            this.innerText = temp;
+        }.bind(spObj), 1000)
+</textarea>
+
+    <script>
+        var spObj = my$("sp");
+        var temp = 0;
+
+        setInterval(function() {
+            temp++;
+            this.innerText = temp;
+        }.bind(spObj), 1000)
+    </script>
+</body>
+
+</html>

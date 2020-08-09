@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+		獲取變量數據類型 --- console.log(typeof num);
+		輸入任一個對象，並且判斷他是屬於哪種 instanceof (對象類型 or 某類型) --- 返回字串類型
+		例如：console.log(obj instanceof Object);
+		借用 Object下面prototype的方法toString，並且，使用call去調用
+		判斷Object --- Object.prototype.toString.call({})
+		判斷Array --- Object.prototype.toString.call([])
+
+		dt= new Date();
+		判斷Date --- Object.prototype.toString.call(dt)
+
+		[object Array] --- 數組類型
+		[object Date] --- 時間類型
+		[object Object] --- 對象類型
+        function getFun(type) {
+            return function(obj) {
+                console.log(type);
+                return Object.prototype.toString.call(obj) === type;
+            }
+        }
+        var arr = [10, 20, 30];
+        var ff = getFun("[object Array]");
+        var r = ff(arr);
+        console.log(r);
+
+        var dt = new Date();
+        var ff1 = getFun("[object Date]");
+        var r1 = ff1(dt);
+        console.log(r1);
+
+		[object Array]
+		true
+		[object Date]
+		true
+	</textarea>
+
+    <script>
+        //console.log(Object.prototype.toString.call({}));
+        var num = 10;
+        //獲取變量數據類型
+        console.log(typeof num);
+        //判斷對象的類型
+        var obj = {};
+        console.log(obj instanceof Object);
+
+        console.log("============華麗的分隔線============");
+        console.log("返回一個字串，說明該對象是否符合  [某種類型]");
+        console.log("============華麗的分隔線============");
+
+        function getFun(type) {
+            return function(obj) {
+                console.log(type);
+                return Object.prototype.toString.call(obj) === type;
+            }
+        }
+        var arr = [10, 20, 30];
+        var ff = getFun("[object Array]");
+        var r = ff(arr);
+        console.log(r);
+
+        var dt = new Date();
+        var ff1 = getFun("[object Date]");
+        var r1 = ff1(dt);
+        console.log(r1);
+    </script>
+</body>
+
+</html>

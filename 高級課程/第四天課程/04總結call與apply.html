@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id="ta " name="ta " rows="60 " cols="150 ">
+apply和call的使用方法
+apply的使用語法
+函數名字.apply.(對象, [參數1,參數2 ...])
+方法名字.apply.(對象, [參數1,參數2 ...])
+call的使用語法
+函數名字.call.(對象, 參數1,參數2 ...)
+方法名字.call.(對象, 參數1,參數2 ...)
+
+作用：改變this的指向
+不同的地方：參數傳遞的方式不一樣
+
+只要是想使用別的對象的方法，並且希望這個方法是當前對象的，那麼就可以使用apply或是call的方法改變this的指向
+
+到底，call跟apply裡面的this是誰的？
+答案：
+是Function的，在Function.property下面，可以使用 console.dir(Function去觀察)
+
+			</textarea>
+    <script>
+        function f1(x, y) {
+            console.log((x + y) + "===>" + this + this.sex);
+            return 1000;
+        }
+        //此時f1中的this是 window
+        f1(10, 20);
+        var obj = {
+            sex: "男"
+        };
+        //此時的 this 被改變指向，改到了 obj
+        // apply 第一個參數是 對向 第二個參數是 數組
+        var r1 = f1.apply(obj, [10, 20]);
+        console.log(r1);
+        // apply 第一個參數是 對向 後面接很多的參數，不限制型態 ---...*
+        var r2 = f1.call(obj, 10, 20);
+        console.log(r2);
+        console.log("=======華麗的分隔線======");
+
+        function Person(age) {
+            this.age = age;
+        }
+        Person.prototype.sayHi = function(x, y) {
+            console.log("x+y→" + (x + y) + "我的對象是→" + this + " age是→" + this.age);
+            console.dir(this);
+        };
+
+        function Student(age) {
+            this.age = age;
+        }
+        var p = new Person(20);
+        p.sayHi(10, 20);
+
+        var st = new Student(30);
+        p.sayHi.apply(st, [30, 40]);
+        p.sayHi.call(st, 70, 80);
+        p.sayHi(100, 200);
+        console.dir(st);
+    </script>
+</body>
+
+</html>

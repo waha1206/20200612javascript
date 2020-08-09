@@ -198,11 +198,17 @@
             var y = e.clientY - my$("login").offsetTop;
 
             document.onmousemove = function(e) {
-                console.log(my$("login").offsetTop);
-                if (my$("login").offsetTop > 20) {
-                    my$("login").style.left = e.clientX - x + 250 + "px";
-                    my$("login").style.top = e.clientY - y - 140 + "px";
-                }
+                currentX = e.clientX - x + 250;
+                currentX = currentX < 250 ? 250 : currentX;
+                currentX = currentX > 1635 ? 1635 : currentX;
+
+                currentY = e.clientY - y - 140;
+                currentY = currentY < -120 ? -120 : currentY;
+                console.log("currentX===>" + currentX);
+                console.log("currentY===>" + currentY);
+                my$("login").style.left = currentX + "px";
+                my$("login").style.top = currentY + "px";
+
             };
         };
         document.onmouseup = function() {

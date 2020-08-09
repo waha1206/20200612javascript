@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 350px;
+            height: 350px;
+            margin: 100px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        
+        .big {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .mask {
+            width: 175px;
+            height: 175px;
+            background: rgba(255, 255, 0, 0.4);
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            cursor: move;
+            display: none;
+        }
+        
+        .small {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <div class="small">
+            <!--小层-->
+            <img src="images/small.png" width="350" alt="" />
+            <div class="mask"></div>
+            <!--遮挡层-->
+        </div>
+        <!--小图-->
+        <div class="big">
+            <!--大层-->
+            <img src="images/big.jpg" width="800" alt="" />
+            <!--大图-->
+        </div>
+        <!--大图-->
+    </div>
+    <script>
+        var box = my$("box");
+        var small = box.children[0];
+        var mask = small.children[1];
+        var big = box.children[1];
+        var bigImg = big.children[0];
+
+        box.onmouseover = function() {
+            mask.style.display = "block";
+            big.style.display = "block";
+        };
+        box.onmouseout = function() {
+            mask.style.display = "none";
+            big.style.display = "none";
+        };
+
+        //當滑鼠進入小圖觸發移動事件
+        small.onmousemove = function(e) {
+            //取得滑鼠的座標，並且，讓滑鼠居中於遮擋層的正中間
+            var x = e.clientX - Math.ceil(mask.offsetWidth / 2);
+            var y = e.clientY - Math.ceil(mask.offsetHeight / 2);
+            //減掉margin 100px的影響
+            x -= 100;
+            y -= 100;
+            x = x < 0 ? 0 : x;
+            //靠近右邊界的時候，弄了一個磁鐵效應，那個 - 20 就是產生磁鐵效益的關鍵數字 20 為可調整的
+            //x = x > small.offsetWidth - mask.offsetWidth - 20 ? small.offsetWidth - mask.offsetWidth : x;
+            x = x > small.offsetWidth - mask.offsetWidth ? small.offsetWidth - mask.offsetWidth : x;
+            y = y < 0 ? 0 : y;
+            y = y > small.offsetHeight - mask.offsetHeight ? small.offsetHeight - mask.offsetHeight : y;
+            mask.style.left = x + "px";
+            mask.style.top = y + "px";
+
+            //右邊大圖整個邏輯為
+            //遮擋層的移動距離 / 大圖的移動距離 = 遮擋層的最大移動距離 / 大圖的最大移動距離
+            //大圖的移動距離  = 遮擋層的移動距離*大圖的最大移動距離 / 遮擋層的最大移動距離
+
+            //拿到大圖橫向移動的最大距離
+            var maxX = bigImg.offsetWidth - big.offsetWidth;
+
+            //大圖的縱向的最大移動距離 -- 這個比例用上面的就好了，前提是，圖片設置的比例要正確
+            var maxY = bigImg.offsetHeight - big.offsetHeight;
+
+            //大圖的橫向移動座標
+            var bigImgMoveX = x * maxX / (small.offsetWidth - mask.offsetWidth);
+            //大圖的縱向移動座標
+            var bigImgMoveY = y * maxX / (small.offsetWidth - mask.offsetWidth);
+
+            //設置圖片移動
+            bigImg.style.marginLeft = -bigImgMoveX + "px";
+            bigImg.style.marginTop = -bigImgMoveY + "px";
+
+        };
+    </script>
+</body>
+
+</html>

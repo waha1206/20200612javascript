@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        div {
+            height: 100px;
+            width: 200px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="點我隱藏" name="" id="btn">
+    <div id="dv"></div>
+    哈哈
+    <script>
+        document.getElementById("btn").onclick = function() {
+            //不佔位
+            //my$("dv").style.display = "none";
+            //佔位
+            //my$("dv").style.visibility = "hidden";
+            //佔位
+            //my$("dv").style.opacity = 0;
+            //佔位 --- 這種方式~哈哈沒有往上跑，雖然高不見了
+            my$("dv").style.height = "0px";
+            my$("dv").style.border = "0px";
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id="ta " name="ta " rows="60 " cols="150 ">
+到底，call跟apply裡面的this是誰的？
+答案：
+是Function的，在Function.property下面，可以使用 console.dir(Function去觀察)
+
+			</textarea>
+    <script>
+        function f1() {
+            console.log("您好");
+        }
+        //f1是函數，f1也是對象
+        console.dir(f1);
+        //調用對象中的方法，證明，該對象中有這個方法
+        f1.apply();
+        f1.call();
+        //證明一下，f1的 __proto__ 跟 Function裡面的prototype
+        console.log(f1.__proto__ == Function.prototype);
+        //結論，所有函數都是Function的實例對象 --- 因為有 __proto__
+        console.log(Function.prototype); // () { [native code] }
+        console.dir(Function);
+    </script>
+</body>
+
+</html>

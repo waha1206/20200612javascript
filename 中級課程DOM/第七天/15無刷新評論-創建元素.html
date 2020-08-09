@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <table id="tb" border="1">
+        <tbody id="tbd">
+            <tr>
+                <td>聒聒:</td>
+                <td>我喜歡刮刮</td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        暱稱:<input type="text" value="" id="userName" /><br/>
+        <textarea name="" id="tt" cols="30" rows="10"></textarea><br/>
+        <input type="button" value="我要留言" id="btn" /><br/>
+    </div>
+    <script>
+        my$("btn").onclick = function() {
+            //獲取暱稱的元素
+            var userName = my$("userName");
+            //獲取評論的元素
+            var tt = my$("tt");
+            //塞元素之前，要先取得要塞的元素
+            var tbdObj = my$("tbd");
+            //創建元素 一個 tr + 兩個 td
+            var tr = document.createElement("tr");
+            //行創建完了，要加到tbd中
+            tbdObj.appendChild(tr);
+            //列創建完了，要加入 行tr 當中
+            var td1 = document.createElement("td");
+            tr.appendChild(td1);
+            var td2 = document.createElement("td");
+            tr.appendChild(td2);
+            //兩個欄位賦值
+            td1.innerText = userName.value;
+            td2.innerText = tt.value;
+            userName.value = "";
+            tt.value = "";
+
+        };
+    </script>
+</body>
+
+</html>

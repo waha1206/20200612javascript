@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+函數中有一個name --- 函數的名字 (唯讀)
+函數中有一個arguments --- 實參的個數
+函數中有一個length --- 函數定義的時候形參的個數
+函數中有一個caller --- 調用 (f1函數在f2函數中調用的，所以，此時的調用者就是f2)
+
+
+	function f1(x, y) { //形參
+            console.log(f1.name); //唯讀
+            console.log(f1.arguments); //實參
+            console.log(f1.arguments.length); //實參個數
+            console.log(f1.length); //傳參
+            console.log(f1.caller); //調用者 --- 沒有的話為null
+        }
+
+        function f2() {
+            f1(1, 2);
+        }
+        f1(1, 2, 3, 4); //實參
+        f2();
+</textarea>
+
+    <script>
+        function f1(x, y) {
+            console.log(f1.name);
+            console.log(f1.arguments);
+            console.log(f1.arguments.length);
+            console.log(f1.length);
+            console.log(f1.caller);
+        }
+
+        function f2() {
+            f1(1, 2);
+        }
+        f1(1, 2, 3, 4);
+        f2();
+    </script>
+</body>
+
+</html>

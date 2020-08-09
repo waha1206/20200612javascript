@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+	a > b 的時候 return 1; --- 從小排到大
+	a > b 的時候 return -1; --- 從大排到小
+	var arr = [100, 12, 30, 90, 50, 22, 69, 200, 32];
+        arr.sort(function(a, b) {
+            if (a > b) {
+                return 1;
+            } else if (a == b) {
+                return 0;
+            } else if (a < b) {
+                return -1;
+            }
+        });
+</textarea>
+
+    <script>
+        var arr = [100, 12, 30, 90, 50, 22, 69, 200, 32];
+        arr.sort(function(a, b) {
+            if (a > b) {
+                return 1;
+            } else if (a == b) {
+                return 0;
+            } else if (a < b) {
+                return -1;
+            }
+        });
+        console.log(arr);
+        var arr2 = ["abcf", "bcde", "bcdf", "abcd", 20, [20, 30]];
+        arr2.sort(function(a, b) {
+            if (a > b) {
+                return 1;
+            } else if (a == b) {
+                return 0;
+            } else if (a < b) {
+                return -1;
+            }
+        });
+        console.log(arr2);
+    </script>
+</body>
+
+</html>

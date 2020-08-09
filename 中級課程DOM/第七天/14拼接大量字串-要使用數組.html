@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'>
+    </script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="拼接吧" id="btn" /><br/>
+    <input type="text" value="" /><br/>
+    <input type="text" value="" /><br/>
+    <input type="text" value="" /><br/>
+    <input type="text" value="" /><br/>
+    <input type="text" value="" /><br/>
+
+    <script>
+        var btnObj = document.getElementById("btn");
+        btnObj.onclick = function() {
+            //變例循環所有input
+            var inpList = document.getElementsByTagName("input");
+            var arr = [];
+            console.log(inpList);
+            for (var i = 0; i < inpList.length; i++) {
+                if (inpList[i].type != "button") {
+                    arr.push(inpList[i].value);
+                }
+            }
+            //return 一個字串
+            console.log(arr.join("|"));
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        textarea {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="ta " name="ta " rows="60 " cols="150 ">
+		/*
+		*
+		* 複習:
+		*
+		* 原型:
+		* 每個實例對像中都有一個屬性__proto__,是原型,瀏覽器使用的,不標準的屬性
+		* 每個構造函數中都有一個屬性prototype,是原型,程序員使用的,
+		* 面向對象和面向過程都是編程思想
+		* 面向對象注重的是結果,面向過程注重的是過程
+		* 面向對象的特性:封裝,繼承,多態
+		* 繼承:
+		* 1.通過原型實現繼承,改變原型的指向,屬性在初始化的時候就已經固定了,如果是多個對象實例化,那麼每個實例對象的屬性的值在初始化的時候都是一樣的
+		* 2.借用構造函數繼承,不能繼承方法
+		* 3.組合繼承,可以解決屬性和方法的繼承的問題
+		* 4.拷貝繼承,就是把一個對像中的原型中的所有的屬性和方法複製一份給另一個對象
+		*
+		*
+		* 創建對象的三種方式
+		* 1. 字面量的方式
+		* 2. 調用系統的構造函數
+		* 3. 自定義構造函數
+		*
+		*
+		*
+		* 原型鏈:實例對象和原型對象之間的關係,主要是通過__proto__和prototype來聯繫
+		*
+		* 原型的指向是可以改變,所以,js中是通過改變原型來實現繼承
+		*
+		*
+		* 原型的作用:
+		* 實現數據共享,繼承, 都是為了節省內存空間
+		* 如果屬性和方法都需要共享,那麼就把屬性和方法添加到原型中
+		*
+		*
+		* 函數中的this的指向
+		*
+		* 普通的函數中this是window
+		* 構造函數中的this,構造函數一般都是創建實例對象使用的,是通過new關鍵字,構造函數也是函數
+		* 構造函數中的this是實例對象
+		* 方法中的this是實例對象
+		* 原型中的方法中的this是實例對象
+		* 定時器中的this是window
+		*
+		* 函數是對象,構造函數也是函數,也是對象
+		* 對像是不是函數呢?不一定
+		*
+		* 對像中有__proto__
+		* 函數中有prototype
+		*
+		* Math是對象,但不是函數
+		*
+		*
+		*
+		*
+		* */
+
+			</textarea>
+    <script>
+        //字面量的方式創建對象
+        var obj = {
+            age: 10,
+            sex: "男",
+            sayHi: function() {
+                console.log("這個是字面量的方式創建對象");
+            }
+        };
+        obj.sayHi();
+
+        //調用系統的構造函數創建對象
+        var obj2 = new Object();
+        obj2.age = 20;
+        obj2.sex = "男";
+        obj2.sayHi = function() {
+            console.log("高級課程好難喔");
+        };
+
+        //自定義構造函數創建對象
+        function Person(age, sex) {
+            this.age = age;
+            this.sex = sex;
+            this.sayHi = function() {
+                console.log("我是自定義構造函數創造的方法");
+            };
+        }
+        var p = new Person(20, "男");
+        console.log(p.age);
+        p.sayHi();
+        console.log("==========下面是繼承的代碼==========");
+        //繼承的代碼
+        function Animal(age, sex) {
+            this.age = age;
+            this.sex = sex;
+        }
+
+        //通過原型增加屬性
+        Animal.prototype.color = "黃色";
+        Animal.prototype.eat = function() {
+            console.log("我是透過原型增加屬性加入的方法 eat");
+        };
+
+        //小狗的代碼
+        function Dog(age, sex, name) {
+            //借用的構造函數
+            Animal.call(this, age, sex);
+            this.name = name;
+        }
+        //改變原型的指向，為了繼承方法
+        Dog.prototype = new Animal();
+
+        console.dir(Dog);
+
+        var dog = new Dog(46, "男", "Waha");
+        console.log(dog.age);
+        console.log(dog.sex);
+        console.log(dog.name);
+        console.log(dog.color);
+        dog.eat();
+        console.dir(dog);
+    </script>
+</body>
+
+</html>

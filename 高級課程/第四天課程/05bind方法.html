@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+	function Person(age) {
+            this.age = age;
+        }
+        Person.prototype.play = function() {
+            console.dir(this);
+            console.log(this + "=====>" + this.age);
+        };
+
+
+
+        function Student(age) {
+            this.age = age;
+        }
+        var per = new Person(20);
+        var stu = new Student(30);
+
+        var ff = per.play.bind(stu);
+        ff();
+
+        //bind用來複製一份
+        //使用的語法
+        //函數的名字.bind(對象,參數1,參數2 ....) --- 返回值是複製之後的這個函數
+        //方法的名字.bind(對象,參數1,參數2 ....) --- 返回值是複製之後的這個函數
+</textarea>
+
+    <script>
+        function Person(age) {
+            this.age = age;
+        }
+        Person.prototype.play = function() {
+            console.dir(this);
+            console.log(this + "=====>" + this.age);
+        };
+
+
+
+        function Student(age) {
+            this.age = age;
+        }
+        var per = new Person(20);
+        var stu = new Student(30);
+
+        var ff = per.play.bind(stu);
+        ff();
+
+        //bind用來複製一份
+        //使用的語法
+        //函數的名字.bind(對象,參數1,參數2 ....) --- 返回值是複製之後的這個函數
+        //方法的名字.bind(對象,參數1,參數2 ....) --- 返回值是複製之後的這個函數
+    </script>
+</body>
+
+</html>
