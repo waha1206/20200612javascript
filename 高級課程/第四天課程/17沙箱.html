@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" id="btn" value="點我一下"><br>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+	封閉的小宇宙！
+	使用完畢後，就消失，瀏覽器會刪除所有的內容
+	把自變量都放到沙箱裡面，大家就都不會發生衝突了 --- 例如攤吃蛇的例子
+
+	下面是點擊事件的例子
+	(function() {
+		document.getElementById("btn").onclick = function() {
+			console.log("我是btn物件裡面的點擊事件，我使用沙箱的做法");
+		};
+	}());
+
+	起手的寫法有兩個
+	1.  (()); → (function (){}      ());
+	2.  ()(); → (function (){})();
+</textarea>
+
+    <script>
+        (function() {
+            console.log("我是一個沙箱訊息");
+        })();
+
+        (function() {
+            console.log("我是另外一個沙箱");
+        }());
+
+        (function() {
+            document.getElementById("btn").onclick = function() {
+                console.log("我是btn物件裡面的點擊事件，我使用沙箱的做法");
+            };
+        }());
+    </script>
+</body>
+
+</html>

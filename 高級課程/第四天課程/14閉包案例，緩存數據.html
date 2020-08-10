@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+function f1() {
+	//緩存數據的資料要放在，外層函數跟內層return函數的中間
+	var num = 10;
+	return function() {
+		num++;
+		return num;
+	}
+}
+var ff = f1();
+console.log(ff());
+console.log(ff());
+console.log(ff());
+</textarea>
+    <script>
+        function f1() {
+            //緩存數據的資料要放在，外層函數跟內層return函數的中間
+            var num = 10;
+            return function() {
+                num++;
+                return num;
+            }
+        }
+        var ff = f1();
+        console.log(ff());
+        console.log(ff());
+        console.log(ff());
+    </script>
+</body>
+
+</html>

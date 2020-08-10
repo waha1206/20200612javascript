@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+        function getRandom() {
+            var random = parseInt(Math.random() * 10 + 1);
+            return function() {
+                console.log(random);
+                return random;
+            }
+        }
+
+        var ff = getRandom();
+        ff();
+        ff();
+        ff();
+總結：如果想要緩存數據，就把這個數據放在外層的函數和裡層的函數的中間位置
+閉包的作用：緩存數據，優點也是缺點，沒有及時的釋放
+局部變量是在函數中，函數使用結束後，局部變量就會被自動的釋放
+閉包後，裡面的局部變量的使用作用域鏈就會被延長
+</textarea>
+
+    <script>
+        function getRandom() {
+            var random = parseInt(Math.random() * 10 + 1);
+            return function() {
+                console.log(random);
+                return random;
+            }
+        }
+
+        var ff = getRandom();
+        ff();
+        ff();
+        ff();
+    </script>
+</body>
+
+</html>

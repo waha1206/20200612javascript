@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+        ul {
+            list-style-type: none;
+        }
+        
+        li {
+            float: left;
+            margin-left: 10px;
+        }
+        
+        img {
+            width: 200px;
+            height: 180px;
+        }
+        
+        input {
+            margin-left: 30%;
+        }
+        
+        textarea {
+            position: absolute;
+            top: 300px;
+            left: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='20' cols='80'>
+        function myTag$(attr) {
+            return document.getElementsByTagName(attr);
+        }
+        var tagObjs = myTag$("input");
+
+        function getValue() {
+	//這邊存放閉包使用的資料 --- 資料緩存
+            var value = 0;
+            return function() {
+                this.value = "讚(" + (++value) + ")";
+            }
+        }
+
+        for (var i = 0; i < tagObjs.length; i++) {
+            tagObjs[i].onclick = getValue();
+        }
+</textarea>
+    <ul>
+        <li><img src="images/ly.jpg" alt=""><br/><input type="button" value="讚(0)"></li>
+        <li><img src="images/lyml.jpg" alt=""><br/><input type="button" value="讚(0)"></li>
+        <li><img src="images/fj.jpg" alt=""><br/><input type="button" value="讚(0)"></li>
+        <li><img src="images/bd.jpg" alt=""><br/><input type="button" value="讚(0)"></li>
+    </ul>
+    <script>
+        function myTag$(attr) {
+            return document.getElementsByTagName(attr);
+        }
+        var tagObjs = myTag$("input");
+
+        function getValue() {
+            //這邊存放閉包使用的資料 --- 資料緩存
+            var value = 0;
+            return function() {
+                this.value = "讚(" + (++value) + ")";
+                console.log(value);
+            }
+        }
+
+        for (var i = 0; i < tagObjs.length; i++) {
+            tagObjs[i].onclick = getValue();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>這是div</div>
+    <div>這是div</div>
+    <div>這是div</div>
+    <p>這是p</p>
+    <p>這是p</p>
+    <p>這是p</p>
+    <input type="button" id="btn" value="點(0)次"> <br>
+    <textarea id='ta' name='ta' rows='30' cols='100'>
+很厲害，可以避免可變量跟函數名稱的衝突，超強，程式碼也會變成更容易懂
+var getTag = 10;
+var dvObj = 20;
+var pObj = 30;
+(function() {
+	function getTag(tagName) {
+		return document.getElementsByTagName(tagName);
+	}
+
+	var dvObj = getTag("div");
+	for (var i = 0; i < dvObj.length; i++) {
+		dvObj[i].style.border = "2px solid red";
+	}
+	var pObj = getTag("p");
+	for (var i = 0; i < pObj.length; i++) {
+		pObj[i].style.border = "2px solid blue";
+	}
+	//閉包的函數
+	function getValue() {
+		//閉包的直藏這 --- num 點擊次數
+		var num = 0;
+		return function() {
+			this.value = "點(" + (++num) + ")次";
+		}
+	}
+	//把閉包包裝到沙箱裡面也可以
+	my$("btn").onclick = getValue();
+}
+());
+        console.log(getTag);
+        console.log(dvObj);
+        console.log(pObj);
+</textarea>
+
+    <script>
+        //根據標籤名字獲取元素
+        var getTag = 10;
+        var dvObj = 20;
+        var pObj = 30;
+
+        //超強的沙箱！把程式碼都獨立了，看起來真的爽
+        (function() {
+                function getTag(tagName) {
+                    return document.getElementsByTagName(tagName);
+                }
+
+                var dvObj = getTag("div");
+                for (var i = 0; i < dvObj.length; i++) {
+                    dvObj[i].style.border = "2px solid red";
+                }
+                var pObj = getTag("p");
+                for (var i = 0; i < pObj.length; i++) {
+                    pObj[i].style.border = "2px solid blue";
+                }
+                //閉包的函數
+                function getValue() {
+                    //閉包的直藏這 --- num 點擊次數
+                    var num = 0;
+                    return function() {
+                        this.value = "點(" + (++num) + ")次";
+                    }
+                }
+                //把閉包包裝到沙箱裡面也可以
+                my$("btn").onclick = getValue();
+            }
+            ());
+
+
+        console.log(getTag);
+        console.log(dvObj);
+        console.log(pObj);
+    </script>
+</body>
+
+</html>

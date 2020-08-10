@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='60' cols='150'>
+閉包的概念：函數A中，有一個函數B，函數B中可以訪問函數A中的定義的變量或者是數據，此時形成了閉包
+上面這串敘述，暫時不嚴謹
+
+閉包模式：函數模式的閉包，對象模式的閉包 --- 函數中有個對象稱之 對象模式的閉包
+閉包的作用：緩存數據，延長作用域鏈
+閉包的優點和缺點：緩存數據
+
+閉包的應用：
+</textarea>
+    <script>
+        //函數模式的閉包
+        function f1() {
+            var num = 10;
+            //宣告f2函數
+            function f2() {
+                console.log(num);
+            }
+            //調用f2函數
+            f2();
+        }
+        //調用函數f1
+        f1();
+
+        //對象模式的閉包 --- 函數中有個對象稱之 對象模式的閉包
+        function f3() {
+            var num = 10;
+            obj = {
+                age: num
+            }
+            console.log(obj.age);
+        }
+        //函數調用
+        f3();
+    </script>
+</body>
+
+</html>
