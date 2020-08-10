@@ -35,6 +35,7 @@ console.log(ff());
                 return num;
             }
         }
+        // 因為賦值給 ff 了，所以 .. f1不會消失，這也意謂者，f1中的字變量 var num 不會消失
         var ff = f1();
         console.log(ff());
         console.log(ff());

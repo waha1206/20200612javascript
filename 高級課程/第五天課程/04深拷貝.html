@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <textarea id='ta' name='ta' rows='30' cols='100'>
+花時間，也沒什麼用，但是用了遞歸，所以當作練習一下
+他喵的無法複製 一個 function 使用這種 deep copy 但是，淺層的卻可以
+一般的複製，只會把記憶體位置做指向
+例如
+var a = {
+    b:50
+}
+var b = a;
+a.b=100;
+console.log(b.b); //100
+
+</textarea>
+
+    <script>
+        var obj1 = {
+            age: 20,
+            sex: "男",
+            name: "Leo",
+            car: ["我", "你", "他"],
+            eat: function() {
+                console.log("我吃吃吃吃");
+            },
+            dog: {
+                name: "大貓",
+                age: 5,
+                color: "寶藍"
+            }
+        };
+
+        var obj2 = {
+
+        };
+
+        console.log("HIHI");
+        //a被拷貝的對象--來源  b拷貝者--目的
+        function extend(a, b) {
+            for (var key in a) {
+                var item = a[key];
+                //console.log(item + "== >" + Object.prototype.toString.call(a[key]))
+                if (item instanceof Array) {
+                    b[key] = [];
+                    extend(item, b[key])
+                } else if (item instanceof Object) {
+                    b[key] = {};
+                    console.log(item + "== >" + Object.prototype.toString.call(a[key]));
+                    extend(item, b[key]);
+                } else {
+                    b[key] = item;
+
+                }
+
+            }
+        }
+        extend(obj1, obj2);
+        console.dir(obj1);
+        console.dir(obj2);
+        console.log(obj1 == obj2);
+        console.log(obj1 === obj2);
+        var a = {
+            b: 50
+        }
+        var b = a;
+        a.b = 100;
+        console.log(b.b); //100
+        obj2.eat();
+    </script>
+</body>
+
+</html>

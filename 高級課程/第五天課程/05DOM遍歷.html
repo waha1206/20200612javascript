@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h1>遍历 DOM 树</h1>
+    <p style="color: green;">Tip: 可以在遍历的回调函数中任意定制需求</p>
+    <div>
+        <ul>
+            <li>123</li>
+            <li>456</li>
+            <li>789</li>
+        </ul>
+        <div>
+            <div>
+                <span>haha</span>
+            </div>
+        </div>
+    </div>
+    <div id="demo_node">
+        <ul>
+            <li>123</li>
+        </ul>
+        <p>hello</p>
+        <h2>world</h2>
+        <div>
+            <p>dsa</p>
+            <h3>
+                <span>dsads</span>
+            </h3>
+        </div>
+    </div>
+    <textarea id='ta' name='ta' rows='30' cols='100'>
+高階寫法：先記錄起來
+var root = document.documentElement;
+console.log(root);
+//根據根節點，調用fn的函數，顯示的是根節點的名字
+function forDOM(node, fn) {
+    fn(node);
+}
+//調用函數
+forDOM(root, function fn(node) {
+    console.log("節點名字:" + node.nodeName);
+});
+</textarea>
+
+    <script>
+        var childCount = 0;
+        var root = document.documentElement;
+        //根據根節點，調用fn函數，顯示的是根節點的名字
+        function forDOM(root1, fn) {
+            //fn(root1);
+            //找到根節點中的有所子節點，也有可能是此根節點下面沒有子節點，但是別擔心forChildren函數會去判斷
+            var children = root1.children;
+            //調用遍歷所有子節點的函數
+            forChildren(children, fn);
+        }
+        //給我一個子節點，我把這個字節點中的所有子節點顯示出來
+        //傳進來的 children 要是有數值，才會做 for 迴圈
+        function forChildren(children, fn) {
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];
+                //顯示每個子節點的的名字
+                fn(child);
+                //這一行很關鍵，他主要是說明
+                //child.children 這個敘述是不是true 意謂者child下面還有沒有子節點，有的話，就把這個子節點當作是根節點丟進去 forDOM
+                //老師的說法是，找到爹了
+                child.children && forDOM(child, fn);
+            }
+        }
+        //調用函數 for DOM 順便這邊封裝了 fn 這個函數進去
+        forDOM(root, function fn(node) {
+            ++childCount;
+            console.log("這個節點的名字：" + node.nodeName + "第" + childCount + "個元素");
+        });
+
+        //這個使用fn取代
+        //function f1(node) {
+        //    ++childCount;
+        //    console.log("這個節點的名字：" + node.nodeName + "第" + childCount + "個元素");
+        //}
+        function A() {
+            console.log('called A');
+            return true;
+        }
+
+        function B() {
+            console.log('called B');
+            return false;
+        }
+
+        function C() {
+            console.log('called B');
+            return false;
+        }
+        // A()  是 false 的話就執行 A() -- 不執行B ()
+        // A()  是 true 的話就執行 A() B()
+        // A()  是 true B() 是 false C() 不執行
+
+        //結論
+        //第一個一定執行，然後接收返回值 true 的話就執行第二個，然後接收返回值 ... 直到 false 之後停止
+        console.log(A() && B() && C());
+    </script>
+</body>
+
+</html>
