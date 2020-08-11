@@ -22,10 +22,45 @@
 創建正則表達式對象
 兩種
 1.通過構造函數創造對象
+var reg = new RegExp(/^\d{5}$/); //對象創建完畢---沒有正則表達式對象
+var str = "我的電話是：0918700586";
+console.log(reg.test(str));
 2.字面量的方式創建對象
+var reg = /\d{1,5}/;
+console.log(reg.test("我的幸運數字：888"));
+
+使用正則表達式的流程
+第一步：你要創建一個正則表達式的對象
+reg = new RegExp(/\d{2,6}/);
+or
+reg = /\d{1,5}/;
+第二步：調用對象裡面的test方法
+reg.test("檢測的字串");
+第三步：接收返回值 true or false
+var flag = reg.test("字串");
+
+超猛的啦！
+console.log(/\d{3,7}/.test("要檢查的字串"));
+
+
+正則表達式的作用：匹配字符串
+var reg = new RegExp(/\d{5}/); // 使用 /  /
+var reg = new RegExp("\\d{5}"); // 使用 "  "，用字符串的時候注意，裡面要有譯字符號 \\d = \d
 </textarea>
 
     <script>
+        //通過構造函數創造對象
+        var reg = new RegExp(/^\d{5}$/); //對象創建完畢---沒有正則表達式對象
+        var str = "我的電話是：0918700586";
+        console.log(reg.test(str));
+
+        //透過字面量的方式創造正則表達式
+        var reg = /\d{1,5}/;
+        console.log(reg.test("我的幸運數字：888"));
+
+        console.log(/\d{4,8}/.test("這裡有5個數字12345"));
+        console.log(/.?/.test("哈哈")); //false
+        console.log(/^.?$/.test("哈哈")); //true
     </script>
 </body>
 
