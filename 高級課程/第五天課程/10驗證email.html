@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+
+    <style>
+        #dv {
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 300px;
+            top: 100px;
+        }
+        
+        textarea {
+            font-size: 16px;
+            background-color: #000;
+            color: #FFF;
+            position: absolute;
+            top: 200px;
+            left: 10px;
+        }
+        
+        #txt {
+            border: 5px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv">
+        <label for="txt">EMAIL ： </label>
+        <input type="text" id="txt" maxlength="50">
+
+    </div>
+    <textarea id='ta' name='ta' rows='30' cols='100'>
+		驗證用戶的 EMAIL 含空格跳出警告
+
+        my$("txt").onblur = function() {
+            var reg = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
+            if (reg.test(my$("txt").value)) {
+                this.style.border = "5px solid yellow";
+            } else {
+                console.log(my$("txt").value);
+                this.style.border = "5px solid red";
+            }
+        };
+        my$("txt").onkeyup = function() {
+            if (/\s/.test(my$("txt").value)) {
+                alert("請勿輸入空格");
+                this.value = "";
+            }
+        };
+    </textarea>
+
+
+    <script>
+        my$("txt").onblur = function() {
+            var reg = /^[0-9a-zA-Z_.-]+[@][0-9a-zA-Z_.-]+([.][a-zA-Z]+){1,2}$/;
+            if (reg.test(my$("txt").value)) {
+                this.style.border = "5px solid yellow";
+            } else {
+                console.log(my$("txt").value);
+                this.style.border = "5px solid red";
+            }
+        };
+        my$("txt").onkeyup = function() {
+            if (/\s/.test(my$("txt").value)) {
+                alert("請勿輸入空格");
+                this.value = "";
+            }
+        };
+    </script>
+</body>
+
+</html>

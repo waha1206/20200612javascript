@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+
+    <style>
+        #dv {
+            width: 350px;
+            height: 200px;
+            position: absolute;
+            left: 300px;
+            top: 100px;
+        }
+        
+        textarea {
+            font-size: 16px;
+            background-color: #000;
+            color: #FFF;
+            position: absolute;
+            top: 200px;
+            left: 10px;
+        }
+        
+        #txt {
+            border: 5px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv">
+        <label for="txt">驗證中文輸入 ： </label>
+        <input type="text" id="txt" maxlength="50">
+
+    </div>
+    <textarea id='ta' name='ta' rows='30' cols='100'>
+	驗證用戶的 輸入的是否是中文
+	var txt = my$("txt");
+        txt.onkeyup = function() {
+            console.log(txt.value);
+            if (/[\u4e00-\u9fa5]{2,6}/.test(txt.value)) {
+                txt.style.border = "5px solid yellow";
+            } else {
+                txt.style.border = "5px solid red";
+            }
+        };
+
+
+    </textarea>
+
+
+    <script>
+        var txt = my$("txt");
+        txt.onkeyup = function() {
+            console.log(txt.value);
+            if (/[\u4e00-\u9fa5]{2,6}/.test(txt.value)) {
+                txt.style.border = "5px solid yellow";
+            } else {
+                txt.style.border = "5px solid red";
+            }
+        };
+    </script>
+</body>
+
+</html>
