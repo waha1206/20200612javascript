@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='js/common-dom.js'></script>
+
+    <style>
+        #dv {
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 300px;
+            top: 100px;
+        }
+        
+        .strengthLv0 {
+            height: 6px;
+            width: 120px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+        
+        .strengthLv1 {
+            background: red;
+            height: 6px;
+            width: 40px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+        
+        .strengthLv2 {
+            background: orange;
+            height: 6px;
+            width: 80px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+        
+        .strengthLv3 {
+            background: green;
+            height: 6px;
+            width: 120px;
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+        
+        textarea {
+            font-size: 16px;
+            background-color: #000;
+            color: #FFF;
+            position: absolute;
+            top: 200px;
+            left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dv">
+        <label for="pwd">密码</label>
+        <input type="text" id="pwd" maxlength="16">
+        <!--课外话题-->
+        <div>
+            <em id="strengthLb">密碼強度：</em>
+            <em id="strength"></em>
+            <div id="strengthLevel" class="strengthLv0"></div>
+        </div>
+    </div>
+    <textarea id='ta' name='ta' rows='30' cols='100'>
+    </textarea>
+
+
+    <script>
+        my$("pwd").onkeyup = function() {
+            if (getValue(this.value).value == -1) {
+                alert("輸入不能有空白字元");
+                this.value = "";
+            }
+            my$("strengthLevel").className = "strengthLv" + (this.value.length >= 6 ? getValue(this.value).value : 0);
+            my$("strengthLb").innerText = "密碼強度：" + (this.value.length >= 6 ? getValue(this.value).text : "無");
+        };
+
+        function getValue(pwd) {
+            var strong = ["無", "弱", "中", "強"];
+            var obj = {
+                value: 0,
+                text: ""
+            };
+
+            if (/\s/.test(pwd)) {
+                obj.value = -1;
+                obj.text = strong[0];
+                return obj;
+            }
+            if (/[0-9]/.test(pwd)) {
+                obj.value++;
+            }
+            if (/[a-zA-z_]/.test(pwd)) {
+                obj.value++;
+            }
+            if (/[^0-9a-zA-Z_]/.test(pwd)) {
+                obj.value++;
+            }
+            obj.text = strong[obj.value];
+            return obj;
+        }
+    </script>
+</body>
+
+</html>
